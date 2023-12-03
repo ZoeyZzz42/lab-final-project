@@ -110,10 +110,10 @@ public class MainJFrame extends javax.swing.JFrame {
         //  if(inputUser.getName()==null  ||  inputUser.getTeleNo()==null){
         //    JOptionPane.showMessageDialog(this, "Please Enter valid User Details", "Error", HEIGHT);
         //}else{
-        //   viewdetailspanel viewPanel = new viewdetailspanel(inputUser);
-         //   jSplitPane1.setBottomComponent(viewPanel);
+        //   viewdetailspanel viewCustomerPanel = new viewdetailspanel(inputUser);
+         //   jSplitPane1.setBottomComponent(viewCustomerPanel);
         //}
-         viewPanel viewPanel = new viewPanel(bottomPanel,employees);
+         viewCustomerPanel viewPanel = new viewCustomerPanel(bottomPanel,employees);
         bottomPanel.add("ViewScreen", viewPanel);
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);

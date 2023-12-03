@@ -27,7 +27,7 @@ public class ProductDirectory {
         this.allProducts = allProducts;
     }
     
-      public void addUser(Product newProduct){
+      public void addProduct(Product newProduct){
         this.allProducts.add(newProduct);
     }
     

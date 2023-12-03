@@ -58,7 +58,7 @@ public class createProductPanel extends javax.swing.JPanel {
 
         headingLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headingLabel.setText("Enter Customer Details");
+        headingLabel.setText("Enter Product Details");
 
         nameLabel.setText("Product Name");
 
@@ -141,7 +141,7 @@ public class createProductPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
 
-        products.addUser(newProduct);
+        products.addProduct(newProduct);
         System.out.println(products);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed

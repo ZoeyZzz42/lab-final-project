@@ -210,7 +210,6 @@ public class createCustomerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Customer newUser = new Customer();
         try{
-       // UUID.randomUUID().toString();
         newUser.setName(nameField.getText());
         newUser.setAge(Integer.parseInt(ageField.getText()));
         newUser.setGender(genderField.getText());

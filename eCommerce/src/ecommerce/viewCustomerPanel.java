@@ -21,16 +21,16 @@ import model.CustomerDirectory;
  *
  * @author shakt
  */
-public class viewPanel extends javax.swing.JPanel {
+public class viewCustomerPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form viewPanel
+     * Creates new form viewCustomerPanel
      */
     
     JPanel bottomPanel;
     CustomerDirectory users;
     
-    public viewPanel(JPanel bottomPanel, CustomerDirectory users) {
+    public viewCustomerPanel(JPanel bottomPanel, CustomerDirectory users) {
         initComponents();
         this.bottomPanel = bottomPanel;
         this.users = users;
