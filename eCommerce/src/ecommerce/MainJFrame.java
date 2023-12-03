@@ -43,13 +43,14 @@ public class MainJFrame extends javax.swing.JFrame {
         viewButton = new javax.swing.JButton();
         createProductButton1 = new javax.swing.JButton();
         viewProductButton = new javax.swing.JButton();
+        createButton1 = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        createButton.setText("Create Customer");
+        createButton.setText("Customer Register");
         createButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createButtonActionPerformed(evt);
@@ -77,20 +78,32 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        createButton1.setText("Customer Login");
+        createButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createButton)
-                    .addComponent(createProductButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                    .addGroup(topPanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(createProductButton1))
+                    .addGroup(topPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(createButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(createButton1)))
+                .addGap(110, 110, 110)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewButton)
                     .addComponent(viewProductButton))
-                .addGap(177, 177, 177))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +111,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
-                    .addComponent(viewButton))
+                    .addComponent(viewButton)
+                    .addComponent(createButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createProductButton1)
@@ -142,7 +156,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void createProductButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProductButton1ActionPerformed
-        createProductPanel formPanel2 = new createProductPanel(bottomPanel,products);
+        createProductPanel formPanel2 = new createProductPanel(bottomPanel);
         bottomPanel.add("CreateScreen", formPanel2);
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);
@@ -150,11 +164,17 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductButtonActionPerformed
         // TODO add your handling code here:
-        viewProductPanel viewProdPanel = new viewProductPanel(bottomPanel, products);
+        viewProductPanel viewProdPanel = new viewProductPanel(bottomPanel);
+
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
         bottomPanel.add("ViewScreen", viewProdPanel);
-                CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);
+       
     }//GEN-LAST:event_viewProductButtonActionPerformed
+
+    private void createButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +214,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JButton createButton;
+    private javax.swing.JButton createButton1;
     private javax.swing.JButton createProductButton1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel topPanel;
