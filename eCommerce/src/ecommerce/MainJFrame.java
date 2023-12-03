@@ -99,7 +99,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
-        createPanel formPanel = new createPanel(bottomPanel,employees);
+        createCustomerPanel formPanel = new createCustomerPanel(bottomPanel,employees);
         bottomPanel.add("CreateScreen", formPanel);
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);

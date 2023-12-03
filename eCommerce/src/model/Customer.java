@@ -16,11 +16,11 @@ import java.util.UUID;
 public class Customer {
 
     public String getName() {
-        return name;
+        return customerName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.customerName = name;
     }
 
     public String getCustomerId() {
@@ -82,13 +82,13 @@ public class Customer {
 
     @Override
     public String toString() {
-       return name ;
+       return customerName ;
     }
     
     
     
     
-    String name;
+    String customerName;
     public String customerID;
     int age;
     String gender;
