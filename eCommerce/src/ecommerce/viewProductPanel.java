@@ -5,6 +5,7 @@
 package ecommerce;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -20,7 +21,7 @@ public class viewProductPanel extends javax.swing.JPanel {
     /**
      * Creates new form viewProductPanel
      */
-    public viewProductPanel() {
+    public viewProductPanel(JPanel bottomPanel, ProductDirectory products1) {
         initComponents();
     }
 

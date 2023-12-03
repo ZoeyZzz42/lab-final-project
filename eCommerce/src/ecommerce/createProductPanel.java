@@ -6,6 +6,7 @@ package ecommerce;
 
 import java.util.UUID;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Product;
 import model.ProductDirectory;
 
@@ -20,7 +21,7 @@ public class createProductPanel extends javax.swing.JPanel {
      */
     
     ProductDirectory products;
-    public createProductPanel() {
+    public createProductPanel(JPanel bottomPanel, ProductDirectory products1) {
         initComponents();
     }
 
