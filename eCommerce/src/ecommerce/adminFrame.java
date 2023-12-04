@@ -5,6 +5,8 @@
 package ecommerce;
 
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.CustomerDirectory;
 import model.ProductDirectory;
@@ -26,6 +28,9 @@ public class adminFrame extends javax.swing.JFrame {
         initComponents();
         employees = new CustomerDirectory();
     }
+    
+    ImageIcon icon = new ImageIcon(getClass().getResource("../"));
+    JLabel label = new JLabel(icon);
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,14 +50,14 @@ public class adminFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setText("Admin");
 
-        viewProductButton.setText("ViewProduct");
+        viewProductButton.setText("View Product");
         viewProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewProductButtonActionPerformed(evt);
             }
         });
 
-        viewButton.setText("ViewCustomer");
+        viewButton.setText("View Customer");
         viewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewButtonActionPerformed(evt);
