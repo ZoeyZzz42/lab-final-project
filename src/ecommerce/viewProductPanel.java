@@ -58,14 +58,14 @@ public class viewProductPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "productID", "Name", "Price", "Description"
+                "Name", "Price", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -278,11 +278,11 @@ public class viewProductPanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
             for (Product u:products){
-                Object[] row = new Object[4];
-                row[0] = u.getProductId();
-                row[1] = u.getProductName();
-                row[2] = u.getPrice();
-                row[3] = u.getProductDescription();
+                Object[] row = new Object[3];
+//                row[0] = u.getProductId();
+                row[0] = u.getProductName();
+                row[1] = u.getPrice();
+                row[2] = u.getProductDescription();
                 model.addRow(row);
             }
             clearFields();

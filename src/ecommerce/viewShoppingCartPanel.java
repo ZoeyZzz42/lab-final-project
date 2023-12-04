@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
+import model.ShoppingCart;
 import util.DatabaseConnector;
 
 /**
@@ -17,6 +18,7 @@ import util.DatabaseConnector;
  */
 public class viewShoppingCartPanel extends javax.swing.JPanel {
     private ArrayList<Product> products;
+    private ArrayList<ShoppingCart> scs;
     /**
      * Creates new form shoppingCartPanel
      */
@@ -43,14 +45,14 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "productID", "Name", "Price", "Description"
+                "Name", "Price", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,15 +96,14 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
 
     public void populateTable() {
         try{
-            this.products = DatabaseConnector.getAllusers();
+            this.scs = DatabaseConnector.getAllSC();
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
-            for (Product u:products){
-                Object[] row = new Object[4];
-                row[0] = u.getProductId();
-                row[1] = u.getProductName();
-                row[2] = u.getPrice();
-                row[3] = u.getProductDescription();
+            for (ShoppingCart u:scs){
+                Object[] row = new Object[2];
+//                row[0] = u.getProductId();
+                row[0] = u.getProductName();
+                row[1] = u.getPrice();
                 model.addRow(row);
             }
         }catch(Exception e){
