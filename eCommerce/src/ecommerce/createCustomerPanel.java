@@ -240,6 +240,11 @@ public class createCustomerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Password must be at least 6 characters long.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if (!telephone.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid telephone number. Please enter only digits.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
            
         System.out.println(users);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
