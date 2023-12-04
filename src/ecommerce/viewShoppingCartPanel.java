@@ -4,12 +4,15 @@
  */
 package ecommerce;
 
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
 import model.ShoppingCart;
+import model.Deliver;
 import util.DatabaseConnector;
 
 /**
@@ -19,6 +22,8 @@ import util.DatabaseConnector;
 public class viewShoppingCartPanel extends javax.swing.JPanel {
     private ArrayList<Product> products;
     private ArrayList<ShoppingCart> scs;
+    private ArrayList<Deliver> delivers;
+    private ShoppingCart selectedProduct;
     /**
      * Creates new form shoppingCartPanel
      */
@@ -39,10 +44,12 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
         headingLabel = new javax.swing.JLabel();
+        placeButton = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null},
+                {null, null}
             },
             new String [] {
                 "Name", "Price"
@@ -69,18 +76,27 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Shopping Cart Details");
 
+        placeButton.setText("Place Order");
+        placeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(placeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(83, 83, 83)
+                            .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(248, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,9 +106,31 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
                 .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(placeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void placeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeButtonActionPerformed
+        Deliver dl = new Deliver();
+        try{
+        int selectedIdx = userTable.getSelectedRowCount();
+        System.out.print(selectedIdx);
+        selectedProduct = scs.get(selectedIdx);
+        dl.setDeliverId(UUID.randomUUID().toString());
+        dl.setProductName(selectedProduct.getProductName());
+        
+        DatabaseConnector.addDL(dl);
+        
+//        delete items in the table 
+        DatabaseConnector.deleteSc(selectedProduct);
+        populateTable();
+        } catch (Exception ex)  {
+            JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
+        }
+         JOptionPane.showMessageDialog(this, "Thank you for your order!", "Success", HEIGHT);
+    }//GEN-LAST:event_placeButtonActionPerformed
 
     public void populateTable() {
         try{
@@ -110,9 +148,11 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headingLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton placeButton;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ package util;
 import java.sql.*;
 import java.util.ArrayList;
 import model.Customer;
+import model.Deliver;
 import model.Product;
 import model.ShoppingCart;
 
@@ -93,6 +94,26 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
     }
+    
+                /**
+     * Insert given customer to database
+     * @see User
+     * @param customer User object to be added
+     */
+    public static void addDL(Deliver dl) {
+        //add to database
+        String query = "INSERT INTO DELIVER(dlID,name) VALUES(?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, dl.getDeliverId());
+            stmt.setString(2, dl.getProductName());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Return lost of all users in database
@@ -154,6 +175,26 @@ public class DatabaseConnector {
      */
     public static void deleteUser(Product u) {
         String query = "delete from PRODUCT where productId = ?";
+        System.out.print(query);
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, u.getProductId());
+            System.out.print(stmt);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Delete given user from database
+     * @see User
+     * @param u User to be deleted
+     * 
+     */
+    public static void deleteSc(ShoppingCart u) {
+        String query = "delete from SHOPPINGCART where scId = ?";
         System.out.print(query);
 
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {

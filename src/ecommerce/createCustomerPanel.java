@@ -279,7 +279,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
         }
            
         System.out.println(users);
-        JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
+        JOptionPane.showMessageDialog(this, "Customer    d Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
 
      private String getSelectedGender() {

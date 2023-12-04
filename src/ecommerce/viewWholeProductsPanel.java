@@ -45,7 +45,6 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
         userTable = new javax.swing.JTable();
         headingLabel = new javax.swing.JLabel();
         addCartButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,13 +82,6 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Go To Shopping Cart");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,14 +89,11 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
-                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addCartButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
@@ -114,25 +103,11 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
                 .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addCartButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(63, 63, 63))
+                .addGap(42, 42, 42)
+                .addComponent(addCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-       CardLayout myCardLayout = new CardLayout();
-    JPanel viewShoppingCartPanel = new JPanel(myCardLayout);
-    myCardLayout.addLayoutComponent(viewShoppingCartPanel, "A_KEY");
-    myCardLayout.show(viewShoppingCartPanel, "A_KEY");
-    
-    CardLayout layout = (CardLayout) viewShoppingCartPanel.getLayout();
-    bottomPanel.add("ViewScreen", viewShoppingCartPanel);
-    layout.next(bottomPanel);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void addCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCartButtonActionPerformed
         ShoppingCart sc = new ShoppingCart();
@@ -155,11 +130,11 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
             for (Product u:products){
-                Object[] row = new Object[4];
-                row[0] = u.getProductId();
-                row[1] = u.getProductName();
-                row[2] = u.getPrice();
-                row[3] = u.getProductDescription();
+                Object[] row = new Object[2];
+
+                row[0] = u.getProductName();
+                row[1] = u.getPrice();
+//                row[3] = u.getProductDescription();
                 model.addRow(row);
             }
         }catch(Exception e){
@@ -169,7 +144,6 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCartButton;
     private javax.swing.JLabel headingLabel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
