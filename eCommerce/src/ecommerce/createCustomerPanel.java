@@ -226,6 +226,16 @@ public class createCustomerPanel extends javax.swing.JPanel {
             return;
         }
         
+        try {
+            int age = Integer.parseInt(ageText);
+            if (age <= 0 || age > 150) { // Assuming age range
+                JOptionPane.showMessageDialog(this, "Invalid age. Please enter a valid number between 1 and 150.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+                return;
+        }} catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Age must be a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+           
         System.out.println(users);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
