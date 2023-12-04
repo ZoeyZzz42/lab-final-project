@@ -39,25 +39,28 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         topPanel = new javax.swing.JPanel();
-        createButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
         createProductButton1 = new javax.swing.JButton();
         viewProductButton = new javax.swing.JButton();
-        createButton1 = new javax.swing.JButton();
+        viewCartButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
+        TitleLable = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        createButton.setText("Customer Register");
-        createButton.addActionListener(new java.awt.event.ActionListener() {
+        registerButton.setText("Customer Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
+                registerButtonActionPerformed(evt);
             }
         });
 
-        viewButton.setText("View");
+        viewButton.setText("ViewCustomer");
         viewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewButtonActionPerformed(evt);
@@ -71,17 +74,34 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        viewProductButton.setText("View");
+        viewProductButton.setText("ViewProduct");
         viewProductButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewProductButtonActionPerformed(evt);
             }
         });
 
-        createButton1.setText("Customer Login");
-        createButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewCartButton.setText("View Cart");
+        viewCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButton1ActionPerformed(evt);
+                viewCartButtonActionPerformed(evt);
+            }
+        });
+
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        TitleLable.setText("Ecommerce!");
+        TitleLable.setSize(new java.awt.Dimension(90, 17));
+
+        jButton1.setText("View All Products");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -90,38 +110,48 @@ public class MainJFrame extends javax.swing.JFrame {
         topPanelLayout.setHorizontalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(17, 17, 17)
+                .addComponent(TitleLable)
+                .addGap(271, 271, 271)
+                .addComponent(registerButton)
+                .addGap(31, 31, 31)
+                .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCartButton)
+                .addGap(69, 69, 69))
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(topPanelLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(createProductButton1))
-                    .addGroup(topPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(createButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(createButton1)))
-                .addGap(110, 110, 110)
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewButton)
-                    .addComponent(viewProductButton))
-                .addContainerGap(222, Short.MAX_VALUE))
+                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(createProductButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
+                    .addComponent(viewCartButton)
+                    .addComponent(loginButton)
+                    .addComponent(registerButton)
+                    .addComponent(TitleLable))
+                .addGap(9, 9, 9)
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewButton)
-                    .addComponent(createButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createProductButton1)
-                    .addComponent(viewProductButton))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(viewProductButton)
+                    .addComponent(createProductButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         jSplitPane1.setTopComponent(topPanel);
 
+        bottomPanel.setToolTipText("");
         bottomPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(bottomPanel);
 
@@ -139,13 +169,13 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
         createCustomerPanel formPanel = new createCustomerPanel(bottomPanel,employees);
         bottomPanel.add("CreateScreen", formPanel);
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);
-    }//GEN-LAST:event_createButtonActionPerformed
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
 
@@ -172,9 +202,28 @@ public class MainJFrame extends javax.swing.JFrame {
        
     }//GEN-LAST:event_viewProductButtonActionPerformed
 
-    private void createButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButton1ActionPerformed
+    private void viewCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCartButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_createButton1ActionPerformed
+        viewShoppingCartPanel viewSCPanel = new viewShoppingCartPanel(bottomPanel);
+        
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add("ViewScreen", viewSCPanel);
+        layout.next(bottomPanel);
+    }//GEN-LAST:event_viewCartButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        viewWholeProductsPanel viewProdsP = new viewWholeProductsPanel(bottomPanel);
+        
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        bottomPanel.add("ViewScreen", viewProdsP);
+        layout.next(bottomPanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,13 +261,16 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TitleLable;
     private javax.swing.JPanel bottomPanel;
-    private javax.swing.JButton createButton;
-    private javax.swing.JButton createButton1;
     private javax.swing.JButton createProductButton1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JButton registerButton;
     private javax.swing.JPanel topPanel;
     private javax.swing.JButton viewButton;
+    private javax.swing.JButton viewCartButton;
     private javax.swing.JButton viewProductButton;
     // End of variables declaration//GEN-END:variables
 }
