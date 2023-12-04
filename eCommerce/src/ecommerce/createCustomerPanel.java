@@ -230,10 +230,10 @@ public class createCustomerPanel extends javax.swing.JPanel {
         String telephone = telephoneField.getText().trim();
         String email = emailField.getText().trim();
         
-        if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Name cannot be empty.", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+     if (name.isEmpty() || ageText.isEmpty() || gender == null || password.isEmpty() || telephone.isEmpty() || email.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "All fields must be filled out.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
         
         try {
             int age = Integer.parseInt(ageText);
