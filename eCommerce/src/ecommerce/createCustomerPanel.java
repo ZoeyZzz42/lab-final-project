@@ -228,11 +228,16 @@ public class createCustomerPanel extends javax.swing.JPanel {
         
         try {
             int age = Integer.parseInt(ageText);
-            if (age <= 0 || age > 150) { // Assuming age range
+            if (age <= 0 || age > 150) { 
                 JOptionPane.showMessageDialog(this, "Invalid age. Please enter a valid number between 1 and 150.", "Validation Error", JOptionPane.ERROR_MESSAGE);
                 return;
         }} catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Age must be a valid number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (password.length() < 6) {
+            JOptionPane.showMessageDialog(this, "Password must be at least 6 characters long.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
            
