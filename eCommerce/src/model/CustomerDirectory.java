@@ -34,6 +34,14 @@ public class CustomerDirectory {
     public void removeUser(Customer user){
         this.allUsers.remove(user);
     }
+      public Customer loginUser(String username, String password) {
+        for (Customer user : allUsers) {
+            if (user.getName().equals(username) && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {
