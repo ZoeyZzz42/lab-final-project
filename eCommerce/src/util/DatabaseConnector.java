@@ -6,9 +6,9 @@ package util;
 
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import model.Customer;
 import model.Product;
-import model.ShoppingCart;
 
 /**
  * Database Connector class for interacting with database
@@ -72,27 +72,6 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
     }
-    
-            /**
-     * Insert given customer to database
-     * @see User
-     * @param customer User object to be added
-     */
-    public static void addSC(ShoppingCart sc) {
-        //add to database
-        String query = "INSERT INTO SHOPPINGCART(scID,NAME,PRICE) VALUES(?,?,?)";
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, sc.getProductName());
-            stmt.setString(2, sc.getProductName());
-            stmt.setInt(3, sc.getPrice());
-            int rows = stmt.executeUpdate();
-            System.out.println("Rows impacted : " + rows);
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Return lost of all users in database
@@ -121,29 +100,6 @@ public class DatabaseConnector {
         }
 
         return products;
-    }
-    
-    public static ArrayList<ShoppingCart> getAllSC() {
-//        return list of users from db
-        ArrayList<ShoppingCart> scList = new ArrayList<>();
-
-        String query = "SELECT * FROM SHOPPINGCART";
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                ShoppingCart u = new ShoppingCart();
-                u.setProductId(rs.getString("scId"));
-                u.setProductName(rs.getString("name"));
-                u.setPrice(rs.getInt("price"));
-                scList.add(u);
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return scList;
     }
 
     /**
@@ -192,14 +148,21 @@ public class DatabaseConnector {
      * @param customer User object to be added
      */
 public static boolean containsUser(Customer customer) {
-    String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE username = ?) AS user_exists";
+    String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE name = ?) AS user_exists";
     try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setString(1, customer.getCustomerId()); // Assuming getCustomerId() returns the username
+        stmt.setString(1, customer.getName()); // Assuming getCustomerId() returns the username
 
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
-            return rs.getBoolean("user_exists");
+          // return rs.getBoolean("user_exists");
+         boolean userExists = rs.getBoolean("user_exists");
+              if (userExists) {
+                 //User exists, display login successful message
+               JOptionPane.showMessageDialog(null, "Login successful");
+           }
+             return userExists;
+            
         }
     } catch (SQLException e) {
         e.printStackTrace();
