@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import model.Customer;
 import model.Product;
+import model.ShoppingCart;
 
 /**
  * Database Connector class for interacting with database
@@ -17,7 +18,7 @@ public class DatabaseConnector {
 
     private static final String URL = "jdbc:mysql://localhost:3306/Ecommerce?useSSL=false";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "labsql";
 
     /**
      * Privatized constructor so as to not allow object creation
@@ -64,6 +65,27 @@ public class DatabaseConnector {
             stmt.setString(5, customer.getEmail());
             stmt.setInt(6, customer.getTeleNo());
             stmt.setString(7, customer.getPassword());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Insert given sc to database
+     * @see User
+     * @param sc User object to be added
+     */
+    public static void addShoppingCart(ShoppingCart sc) {
+        //add to database
+        String query = "INSERT INTO SHOPPINGCART(SCID,NAME,PRICE) VALUES(?,?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, sc.getProductId());
+            stmt.setString(2, sc.getProductName());
+            stmt.setInt(3, sc.getPrice());
             int rows = stmt.executeUpdate();
             System.out.println("Rows impacted : " + rows);
             conn.close();

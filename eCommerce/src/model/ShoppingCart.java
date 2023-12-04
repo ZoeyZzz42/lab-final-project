@@ -12,36 +12,36 @@ import javax.swing.ImageIcon;
  * @author jq
  */
 public class ShoppingCart {
-    private String productName;
-    private String productId;
+    private String scID;
+    private String name;
     private int price;
 
     /**
-     * @return the productName
+     * @return the scID
      */
     public String getProductName() {
-        return productName;
+        return scID;
     }
 
     /**
-     * @param productName the productName to set
+     * @param productName the scID to set
      */
     public void setProductName(String productName) {
-        this.productName = productName;
+        this.scID = productName;
     }
 
     /**
-     * @return the productId
+     * @return the name
      */
     public String getProductId() {
-        return productId;
+        return name;
     }
 
     /**
-     * @param productId the productId to set
+     * @param productId the name to set
      */
     public void setProductId(String productId) {
-        this.productId = productId;
+        this.name = productId;
     }
 
     /**
