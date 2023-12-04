@@ -155,11 +155,11 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
             for (Product u:products){
-                Object[] row = new Object[4];
-                row[0] = u.getProductId();
-                row[1] = u.getProductName();
-                row[2] = u.getPrice();
-                row[3] = u.getProductDescription();
+                Object[] row = new Object[2];
+//                row[0] = u.getProductId();
+                row[0] = u.getProductName();
+                row[1] = u.getPrice();
+//                row[3] = u.getProductDescription();
                 model.addRow(row);
             }
         }catch(Exception e){
