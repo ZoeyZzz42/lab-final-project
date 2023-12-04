@@ -221,6 +221,11 @@ public class createCustomerPanel extends javax.swing.JPanel {
               JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
         
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Name cannot be empty.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         System.out.println(users);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
