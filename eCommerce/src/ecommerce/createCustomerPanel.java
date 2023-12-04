@@ -208,19 +208,6 @@ public class createCustomerPanel extends javax.swing.JPanel {
         String telephone = telephoneField.getText().trim();
         String email = emailField.getText().trim();
         
-        try{
-        newUser.setName(name);
-        newUser.setAge(Integer.parseInt(ageText));
-        newUser.setGender(gender);
-        newUser.setPassword(password);
-        newUser.setTeleNo(Integer.parseInt(telephone));
-        newUser.setEmail(email);
-        newUser.setCustomerID(UUID.randomUUID().toString());
-        DatabaseConnector.addUser(newUser);
-        } catch (Exception ex)  {
-              JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
-        }
-        
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Name cannot be empty.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -249,6 +236,19 @@ public class createCustomerPanel extends javax.swing.JPanel {
         if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
             JOptionPane.showMessageDialog(this, "Invalid email address.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
+            
+        try{
+        newUser.setName(name);
+        newUser.setAge(Integer.parseInt(ageText));
+        newUser.setGender(gender);
+        newUser.setPassword(password);
+        newUser.setTeleNo(Integer.parseInt(telephone));
+        newUser.setEmail(email);
+        newUser.setCustomerID(UUID.randomUUID().toString());
+        DatabaseConnector.addUser(newUser);
+        } catch (Exception ex)  {
+              JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
            
         System.out.println(users);
