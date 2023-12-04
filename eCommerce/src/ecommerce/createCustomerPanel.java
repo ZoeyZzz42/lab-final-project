@@ -259,6 +259,11 @@ public class createCustomerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Invalid email address.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if (gender == null) {
+            JOptionPane.showMessageDialog(this, "Please select a gender.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
             
         try{
         newUser.setName(name);
