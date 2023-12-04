@@ -124,6 +124,7 @@ public class adminFrame extends javax.swing.JFrame {
     private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductButtonActionPerformed
         // TODO add your handling code here:
         viewProductPanel viewProdPanel = new viewProductPanel(bottomPanel);
+        bottomPanel.setLayout(new CardLayout());
 
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         bottomPanel.add("ViewScreen", viewProdPanel);
@@ -135,6 +136,8 @@ public class adminFrame extends javax.swing.JFrame {
 
         viewCustomerPanel viewPanel = new viewCustomerPanel(bottomPanel,employees);
         bottomPanel.add("ViewScreen", viewPanel);
+        bottomPanel.setLayout(new CardLayout());
+
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.next(bottomPanel);
     }//GEN-LAST:event_viewButtonActionPerformed
