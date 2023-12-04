@@ -116,9 +116,11 @@ public class loginPanel extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = nameField.getText();
         String password = passwordField.getText();
+        Customer customer = new Customer();
+        customer.setName(username);
 
                 // Call the loginUser() method to validate credentials
-        DatabaseConnector.containsUser();
+        DatabaseConnector.containsUser(customer);
     }//GEN-LAST:event_loginButtonActionPerformed
 
 

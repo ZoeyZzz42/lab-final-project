@@ -144,7 +144,7 @@ public class createProductPanel extends javax.swing.JPanel {
 
 //        products.addProduct(newProduct);
 //        System.out.println(products);
-        JOptionPane.showMessageDialog(this, "Product Details Saved", "Success", HEIGHT);
+        JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
     
     public void cleanup(){
