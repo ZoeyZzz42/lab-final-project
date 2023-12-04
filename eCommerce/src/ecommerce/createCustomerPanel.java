@@ -201,6 +201,13 @@ public class createCustomerPanel extends javax.swing.JPanel {
         Customer newUser = new Customer();
         users.addUser(newUser);
         
+        String name = nameField.getText().trim();
+        String ageText = ageField.getText().trim();
+        String gender = genderField.getText().trim();
+        String password = passwordField.getText();
+        String telephone = telephoneField.getText().trim();
+        String email = emailField.getText().trim();
+        
         try{
         newUser.setName(nameField.getText());
         newUser.setAge(Integer.parseInt(ageField.getText()));
@@ -212,6 +219,16 @@ public class createCustomerPanel extends javax.swing.JPanel {
         DatabaseConnector.addUser(newUser);
         } catch (Exception ex)  {
               JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
+        }
+        
+        int age;
+        try {
+            age = Integer.parseInt(ageField.getText());
+            if (age < 0 || age > 150) { 
+                throw new IllegalArgumentException("Invalid age.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Age must be a valid number.");
         }
         
         System.out.println(users);
