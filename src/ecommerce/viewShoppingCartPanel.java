@@ -45,14 +45,14 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Price", "Description"
+                "Name", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
