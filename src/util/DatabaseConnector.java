@@ -73,17 +73,17 @@ public class DatabaseConnector {
         }
     }
     
-            /**
-     * Insert given customer to database
+        /**
+     * Insert given sc to database
      * @see User
-     * @param customer User object to be added
+     * @param sc User object to be added
      */
-    public static void addSC(ShoppingCart sc) {
+    public static void addShoppingCart(ShoppingCart sc) {
         //add to database
-        String query = "INSERT INTO SHOPPINGCART(scID,NAME,PRICE) VALUES(?,?,?)";
+        String query = "INSERT INTO SHOPPINGCART(SCID,NAME,PRICE) VALUES(?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, sc.getProductName());
+            stmt.setString(1, sc.getProductId());
             stmt.setString(2, sc.getProductName());
             stmt.setInt(3, sc.getPrice());
             int rows = stmt.executeUpdate();
@@ -121,29 +121,6 @@ public class DatabaseConnector {
         }
 
         return products;
-    }
-    
-    public static ArrayList<ShoppingCart> getAllSC() {
-//        return list of users from db
-        ArrayList<ShoppingCart> scList = new ArrayList<>();
-
-        String query = "SELECT * FROM SHOPPINGCART";
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                ShoppingCart u = new ShoppingCart();
-                u.setProductId(rs.getString("scId"));
-                u.setProductName(rs.getString("name"));
-                u.setPrice(rs.getInt("price"));
-                scList.add(u);
-            }
-            rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return scList;
     }
 
     /**

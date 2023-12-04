@@ -6,12 +6,10 @@ package ecommerce;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
-import model.ShoppingCart;
 import util.DatabaseConnector;
 
 /**
@@ -21,7 +19,6 @@ import util.DatabaseConnector;
 public class viewWholeProductsPanel extends javax.swing.JPanel {
     private ArrayList<Product> products;
     private Product selectedProduct;
-    private ShoppingCart sc;
      JPanel bottomPanel;
     /**
      * Creates new form viewWholeProductsPanel
@@ -44,7 +41,7 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
         headingLabel = new javax.swing.JLabel();
-        addCartButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -52,14 +49,14 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Price"
+                "productID", "Name", "Price", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -76,12 +73,7 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Product Details");
 
-        addCartButton.setText("Add To Cart");
-        addCartButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCartButtonActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Add To Cart");
 
         jButton2.setText("Go To Shopping Cart");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +90,7 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
                 .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(116, 116, 116)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +108,7 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addCartButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(63, 63, 63))
         );
@@ -134,32 +126,17 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
     layout.next(bottomPanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void addCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCartButtonActionPerformed
-        ShoppingCart sc = new ShoppingCart();
-        try{
-        int selectedIdx = userTable.getSelectedRow();
-        selectedProduct = products.get(selectedIdx);
-        sc.setProductId(UUID.randomUUID().toString());
-        sc.setProductName(selectedProduct.getProductName());
-        sc.setPrice(selectedProduct.getPrice());
-        DatabaseConnector.addSC(sc);
-        } catch (Exception ex)  {
-            JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
-        }
-         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
-    }//GEN-LAST:event_addCartButtonActionPerformed
-
     public void populateTable() {
         try{
             this.products = DatabaseConnector.getAllusers();
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
             for (Product u:products){
-                Object[] row = new Object[2];
-//                row[0] = u.getProductId();
-                row[0] = u.getProductName();
-                row[1] = u.getPrice();
-//                row[3] = u.getProductDescription();
+                Object[] row = new Object[4];
+                row[0] = u.getProductId();
+                row[1] = u.getProductName();
+                row[2] = u.getPrice();
+                row[3] = u.getProductDescription();
                 model.addRow(row);
             }
         }catch(Exception e){
@@ -167,8 +144,8 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
         }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addCartButton;
     private javax.swing.JLabel headingLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable userTable;

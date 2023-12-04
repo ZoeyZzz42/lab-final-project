@@ -278,7 +278,7 @@ public class viewProductPanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             model.setRowCount(0);
             for (Product u:products){
-                Object[] row = new Object[3];
+                Object[] row = new Object[4];
 //                row[0] = u.getProductId();
                 row[0] = u.getProductName();
                 row[1] = u.getPrice();
