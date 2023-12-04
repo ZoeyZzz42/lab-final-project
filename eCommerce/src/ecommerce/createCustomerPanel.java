@@ -245,6 +245,11 @@ public class createCustomerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Invalid telephone number. Please enter only digits.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email address.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
            
         System.out.println(users);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
