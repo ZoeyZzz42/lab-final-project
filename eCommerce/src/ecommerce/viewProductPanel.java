@@ -4,6 +4,7 @@
  */
 package ecommerce;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.RowFilter;
@@ -11,22 +12,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Product;
 import model.ProductDirectory;
+import util.DatabaseConnector;
 
 /**
  *
  * @author jq
  */
 public class viewProductPanel extends javax.swing.JPanel {
-    ProductDirectory products;
-      JPanel bottomPanel;
+        private ArrayList<Product> products;
+    private Product selectedProduct;
     /**
      * Creates new form viewProductPanel
      */
-    public viewProductPanel(JPanel bottomPanel, ProductDirectory products) {
+    public viewProductPanel(JPanel bottomPanel) {
         initComponents();
-         this.bottomPanel = bottomPanel;
-          this.products = products;
-          populateTable();
+        populateTable();
     }
 
     /**
@@ -42,7 +42,6 @@ public class viewProductPanel extends javax.swing.JPanel {
         userTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         descriptionField = new javax.swing.JTextField();
-        viewButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
@@ -52,18 +51,26 @@ public class viewProductPanel extends javax.swing.JPanel {
         searchField = new javax.swing.JTextField();
         priceField = new javax.swing.JTextField();
         headingLabel = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Price"
+                "productID", "Name", "Price", "Description"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -76,13 +83,6 @@ public class viewProductPanel extends javax.swing.JPanel {
         descriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptionFieldActionPerformed(evt);
-            }
-        });
-
-        viewButton.setText("View");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
             }
         });
 
@@ -127,19 +127,22 @@ public class viewProductPanel extends javax.swing.JPanel {
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Product Details");
 
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(viewButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateButton))
+                        .addGap(122, 122, 122)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -155,16 +158,18 @@ public class viewProductPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
-                                        .addComponent(searchField)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(124, 124, 124)
-                        .addComponent(deleteButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(searchField))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(updateButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(deleteButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(saveButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,9 +181,13 @@ public class viewProductPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton)
-                    .addComponent(viewButton)
-                    .addComponent(updateButton))
-                .addGap(14, 14, 14)
+                    .addComponent(updateButton)
+                    .addComponent(saveButton))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -190,11 +199,7 @@ public class viewProductPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionLabel)
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(170, 170, 170)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,50 +207,36 @@ public class viewProductPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_descriptionFieldActionPerformed
 
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = userTable.getSelectedRow();
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to be viewed", "Error - No selection", JOptionPane.WARNING_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-            Product selectedProd = (Product) model.getValueAt(selectedIndex, 0);
-            nameField.setText(selectedProd.getProductName());
-            priceField.setText(String.valueOf(selectedProd.getPrice()));
-            descriptionField.setText(selectedProd.getProductDescription());
-        }
-    }//GEN-LAST:event_viewButtonActionPerformed
-
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = userTable.getSelectedRow();
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to be deleted", "Error - No selection", JOptionPane.WARNING_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-            Product selectedProducts = (Product) model.getValueAt(selectedIndex, 0);
-            products.removeUser(selectedProducts);
-            JOptionPane.showMessageDialog(this, "User Information is deleted successfully.");
+
+        int selectedIdx = userTable.getSelectedRow();
+        if (selectedIdx == -1){
+            JOptionPane.showMessageDialog(this, "Please selected a user to delete", "Cannot delete User",WIDTH);
+            return;
+        }
+        try{
+            selectedProduct = products.get(selectedIdx);
+            System.out.print(selectedProduct.getProductName());
+            DatabaseConnector.deleteUser(selectedProduct);
+            JOptionPane.showMessageDialog(null, "User Deleted Successfully", "Successfully Deleted", HEIGHT);
+            clearFields();
             populateTable();
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        Product selectedProduct;
-        int selectedIndex = userTable.getSelectedRow();
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to be updated", "Error - No selection", JOptionPane.WARNING_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-            selectedProduct = (Product) model.getValueAt(selectedIndex, 0);
-            selectedProduct.setProductName(nameField.getText());
-            selectedProduct.setPrice(Integer.parseInt(priceField.getText()));
-            selectedProduct.setProductDescription(descriptionField.getText());
-
-            JOptionPane.showMessageDialog(this, "Employee Details Updated", "Success", HEIGHT);
+        int selectedIdx = userTable.getSelectedRow();
+        if (selectedIdx == -1){
+            JOptionPane.showMessageDialog(this, "Please select a user to edit", "Edit Users", HEIGHT);
+            return;
         }
-    
+        selectedProduct = products.get(selectedIdx);
+        nameField.setText(selectedProduct.getProductName());
+        priceField.setText(Integer.toString(selectedProduct.getPrice()));
+        descriptionField.setText(selectedProduct.getProductDescription());
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
@@ -263,17 +254,41 @@ public class viewProductPanel extends javax.swing.JPanel {
         userTable.setRowSorter(t);
         t.setRowFilter(RowFilter.regexFilter(searchField.getText().trim()));
     }//GEN-LAST:event_searchFieldKeyPressed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        Product newProd = new Product();
+        try{
+            newProd.setProductName(nameField.getText());
+            newProd.setPrice(Integer.parseInt(priceField.getText()));
+            newProd.setProductDescription(descriptionField.getText());
+            
+            DatabaseConnector.editUser(selectedProduct, newProd);
+            JOptionPane.showMessageDialog(null, "Product Edit Successfully", "Successfully Edit", HEIGHT);
+            clearFields();
+            populateTable();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+
+    }//GEN-LAST:event_saveButtonActionPerformed
         
     public void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-        model.setRowCount(0);
-        for (Product u : products.getAllProducts()) {
-            Object[] row = new Object[2];
-            row[0] = u;
-            row[1] = u.getPrice();
-            model.addRow(row);
-    }
+        try{
+            this.products = DatabaseConnector.getAllusers();
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            model.setRowCount(0);
+            for (Product u:products){
+                Object[] row = new Object[4];
+                row[0] = u.getProductId();
+                row[1] = u.getProductName();
+                row[2] = u.getPrice();
+                row[3] = u.getProductDescription();
+                model.addRow(row);
+            }
             clearFields();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
 }
     
     private void clearFields() {
@@ -295,10 +310,10 @@ public class viewProductPanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField priceField;
     private javax.swing.JLabel priceLabel;
+    private javax.swing.JButton saveButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton updateButton;
     private javax.swing.JTable userTable;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
     }
 

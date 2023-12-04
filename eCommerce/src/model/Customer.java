@@ -22,14 +22,6 @@ public class Customer {
     public void setName(String name) {
         this.customerName = name;
     }
-    
-     public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getCustomerId() {
         return customerID;
@@ -72,11 +64,11 @@ public class Customer {
         this.email = email;
     }
 
-    public long getTeleNo() {
+    public int getTeleNo() {
         return teleNo;
     }
 
-    public void setTeleNo(long teleNo) {
+    public void setTeleNo(int teleNo) {
         this.teleNo = teleNo;
     }
 
@@ -97,14 +89,28 @@ public class Customer {
     
     
     String customerName;
-    String password;
     public String customerID;
     int age;
     String gender;
     LocalDate registerDate;
     String email;
-    long teleNo;
+    private String password;
+    int teleNo;
     public ImageIcon profilePic;
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     
     
