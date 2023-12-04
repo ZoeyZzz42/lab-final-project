@@ -6,6 +6,7 @@ package util;
 
 import java.sql.*;
 import java.util.ArrayList;
+import model.Customer;
 import model.Product;
 
 /**
@@ -38,6 +39,31 @@ public class DatabaseConnector {
             stmt.setString(2, user.getProductName());
             stmt.setInt(3, user.getPrice());
             stmt.setString(4, user.getProductDescription());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Insert given customer to database
+     * @see User
+     * @param customer User object to be added
+     */
+    public static void addUser(Customer customer) {
+        //add to database
+        String query = "INSERT INTO CUSTOMER(customerId,name,gender,age, email,telephone,password) VALUES(?,?,?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, customer.getCustomerId());
+            stmt.setString(2, customer.getName());
+            stmt.setString(3,customer.getGender());
+            stmt.setInt(4, customer.getAge());
+            stmt.setString(5, customer.getEmail());
+            stmt.setInt(6, customer.getTeleNo());
+            stmt.setString(7, customer.getPassword());
             int rows = stmt.executeUpdate();
             System.out.println("Rows impacted : " + rows);
             conn.close();
@@ -115,5 +141,26 @@ public class DatabaseConnector {
         }
     }
     
+            /**
+     * Insert given customer to database
+     * @see User
+     * @param customer User object to be added
+     */
+public static boolean containsUser(Customer customer) {
+    String query = "SELECT EXISTS (SELECT 1 FROM users WHERE username = ?) AS user_exists";
+    try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setString(1, customer.getCustomerId()); // Assuming getCustomerId() returns the username
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getBoolean("user_exists");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
 
 }

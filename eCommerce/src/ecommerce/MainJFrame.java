@@ -213,6 +213,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        loginPanel loginP = new loginPanel(bottomPanel, employees);
+        
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+                bottomPanel.add("ViewScreen", loginP);
+        layout.next(bottomPanel);
 
     }//GEN-LAST:event_loginButtonActionPerformed
 

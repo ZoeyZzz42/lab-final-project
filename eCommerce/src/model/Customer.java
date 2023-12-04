@@ -64,11 +64,11 @@ public class Customer {
         this.email = email;
     }
 
-    public long getTeleNo() {
+    public int getTeleNo() {
         return teleNo;
     }
 
-    public void setTeleNo(long teleNo) {
+    public void setTeleNo(int teleNo) {
         this.teleNo = teleNo;
     }
 
@@ -94,8 +94,23 @@ public class Customer {
     String gender;
     LocalDate registerDate;
     String email;
-    long teleNo;
+    private String password;
+    int teleNo;
     public ImageIcon profilePic;
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     
     

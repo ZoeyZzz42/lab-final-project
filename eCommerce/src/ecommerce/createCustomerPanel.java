@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Customer;
 import model.CustomerDirectory;
+import util.DatabaseConnector;
 
 /**
  *
@@ -49,17 +50,16 @@ public class createCustomerPanel extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         ageLabel = new javax.swing.JLabel();
         genderLabel = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         telephonenoLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
         ageField = new javax.swing.JTextField();
         genderField = new javax.swing.JTextField();
-        dateField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
         telephoneField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
-        uploadPhotoButton = new javax.swing.JButton();
 
         headingLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -71,7 +71,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
 
         genderLabel.setText("Gender");
 
-        dateLabel.setText("Start Date(yyyy-mm-dd)");
+        passwordLabel.setText("Password");
 
         telephonenoLabel.setText("Telephone No");
 
@@ -89,9 +89,9 @@ public class createCustomerPanel extends javax.swing.JPanel {
             }
         });
 
-        dateField.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateFieldActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -114,13 +114,6 @@ public class createCustomerPanel extends javax.swing.JPanel {
             }
         });
 
-        uploadPhotoButton.setText("Upload Photo");
-        uploadPhotoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadPhotoButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,13 +121,12 @@ public class createCustomerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(uploadPhotoButton)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(genderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(telephonenoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
@@ -142,12 +134,12 @@ public class createCustomerPanel extends javax.swing.JPanel {
                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(saveButton)))
                     .addComponent(headingLabel))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +160,8 @@ public class createCustomerPanel extends javax.swing.JPanel {
                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateLabel)
-                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telephonenoLabel)
@@ -178,9 +170,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(uploadPhotoButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(saveButton)
                 .addGap(82, 82, 82))
         );
@@ -190,9 +180,9 @@ public class createCustomerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderFieldActionPerformed
 
-    private void dateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFieldActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dateFieldActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void telephoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telephoneFieldActionPerformed
         // TODO add your handling code here:
@@ -209,56 +199,29 @@ public class createCustomerPanel extends javax.swing.JPanel {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
         Customer newUser = new Customer();
+        users.addUser(newUser);
+        
         try{
         newUser.setName(nameField.getText());
         newUser.setAge(Integer.parseInt(ageField.getText()));
         newUser.setGender(genderField.getText());
-        newUser.setRegisterDate(LocalDate.parse(dateField.getText()));
-        newUser.setTeleNo(Long.parseLong(telephoneField.getText()));
+        newUser.setPassword(passwordField.getText());
+        newUser.setTeleNo(Integer.parseInt(telephoneField.getText()));
         newUser.setEmail(emailField.getText());
-        newUser.customerID=UUID.randomUUID().toString();
-        newUser.profilePic = tempuser.profilePic;
+        newUser.setCustomerID(UUID.randomUUID().toString());
+        DatabaseConnector.addUser(newUser);
         } catch (Exception ex)  {
               JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
         
-        users.addUser(newUser);
         System.out.println(users);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void uploadPhotoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadPhotoButtonActionPerformed
-        // TODO add your handling code here:
-        tempuser= uploadPhoto(tempuser);
-            
-    }//GEN-LAST:event_uploadPhotoButtonActionPerformed
-
-     public Customer uploadPhoto(Customer user){
-         user = new Customer();
-     JFileChooser file = new JFileChooser();  
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-        "JPG & GIF Images", "jpg", "gif");
-    file.setFileFilter(filter);
-    int returnVal = file.showOpenDialog(null);
-    if(returnVal == JFileChooser.APPROVE_OPTION) {
-       try{
-         BufferedImage img = ImageIO.read(file.getSelectedFile());
-         Image scaled      =  img.getScaledInstance(150,216, Image.SCALE_DEFAULT);
-        user.setProfilePic(new ImageIcon(scaled));
-    }                                        
-       catch(Exception ex){
-           JOptionPane.showMessageDialog(this, "Please upload valid image.", "Error - Invalid image", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-       }
-    } 
-    return user;
- }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
     private javax.swing.JLabel ageLabel;
-    private javax.swing.JTextField dateField;
-    private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField genderField;
@@ -266,9 +229,10 @@ public class createCustomerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel headingLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField telephoneField;
     private javax.swing.JLabel telephonenoLabel;
-    private javax.swing.JButton uploadPhotoButton;
     // End of variables declaration//GEN-END:variables
 }
