@@ -6,6 +6,7 @@ package util;
 
 import java.sql.*;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import model.Product;
 import model.Customer;
 import model.CustomerDirectory;
@@ -22,6 +23,21 @@ public class DatabaseConnector {
     private static final String URL = "jdbc:mysql://localhost:3306/test?useSSL=false";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
+=======
+import model.Customer;
+import model.Product;
+import model.ShoppingCart;
+
+/**
+ * Database Connector class for interacting with database
+ * @author akshatr
+ */
+public class DatabaseConnector {
+
+    private static final String URL = "jdbc:mysql://localhost:3306/Ecommerce?useSSL=false";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "labsql";
+>>>>>>> origin/Louisnew
 
     /**
      * Privatized constructor so as to not allow object creation
@@ -34,6 +50,7 @@ public class DatabaseConnector {
      * @see User
      * @param user User object to be added
      */
+<<<<<<< HEAD
     public static void addUser(Customer user) {
         //add to database
         String query = "INSERT INTO USER(NAME,AGE) VALUES(?,?)";
@@ -45,6 +62,66 @@ public class DatabaseConnector {
             int rows = stmt.executeUpdate();
             System.out.println("Rows impacted : " + rows);
 //            conn.close();
+=======
+    public static void addProduct(Product user) {
+        //add to database
+        String query = "INSERT INTO PRODUCT(PRODUCTID,NAME,PRICE, DESCRIPTION) VALUES(?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, user.getProductId());
+            stmt.setString(2, user.getProductName());
+            stmt.setInt(3, user.getPrice());
+            stmt.setString(4, user.getProductDescription());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Insert given customer to database
+     * @see User
+     * @param customer User object to be added
+     */
+    public static void addUser(Customer customer) {
+        //add to database
+        String query = "INSERT INTO CUSTOMER(customerId,name,gender,age, email,telephone,password) VALUES(?,?,?,?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, customer.getCustomerId());
+            stmt.setString(2, customer.getName());
+            stmt.setString(3,customer.getGender());
+            stmt.setInt(4, customer.getAge());
+            stmt.setString(5, customer.getEmail());
+            stmt.setInt(6, customer.getTeleNo());
+            stmt.setString(7, customer.getPassword());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Insert given sc to database
+     * @see User
+     * @param sc User object to be added
+     */
+    public static void addShoppingCart(ShoppingCart sc) {
+        //add to database
+        String query = "INSERT INTO SHOPPINGCART(SCID,NAME,PRICE) VALUES(?,?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, sc.getProductId());
+            stmt.setString(2, sc.getProductName());
+            stmt.setInt(3, sc.getPrice());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+>>>>>>> origin/Louisnew
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -55,6 +132,7 @@ public class DatabaseConnector {
      * @see User
      * @return list of users
      */
+<<<<<<< HEAD
     public static ArrayList<Customer> getAllusers() {
 //        return list of users from db
         ArrayList<Customer> users = new ArrayList<>();
@@ -153,10 +231,18 @@ public class DatabaseConnector {
         ArrayList<Product> products = new ArrayList<>();
 
         String query = "SELECT * FROM USER";
+=======
+    public static ArrayList<Product> getAllusers() {
+//        return list of users from db
+        ArrayList<Product> products = new ArrayList<>();
+
+        String query = "SELECT * FROM PRODUCT";
+>>>>>>> origin/Louisnew
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
+<<<<<<< HEAD
                 Product p = new Product();
 //            changed based on the roles (need final revision, meeting on this) 
 //                also on this part we should have more roles 
@@ -165,6 +251,14 @@ public class DatabaseConnector {
 //                i don't think we should change customer ID
 //                p.setCustomerID(rs.getInt("id"));
                 products.add(p);
+=======
+                Product u = new Product();
+                u.setProductId(rs.getString("productId"));
+                u.setProductName(rs.getString("name"));
+                u.setPrice(rs.getInt("price"));
+                u.setProductDescription(rs.getString("description"));
+                products.add(u);
+>>>>>>> origin/Louisnew
             }
             rs.close();
         } catch (SQLException e) {
@@ -176,6 +270,7 @@ public class DatabaseConnector {
 
     /**
      * Delete given user from database
+<<<<<<< HEAD
      * @see Product
      * @param p Product to be deleted
      * 
@@ -187,6 +282,20 @@ public class DatabaseConnector {
 //            changed based on the roles (need final revision, meeting on this) 
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, p.getProductId());
+=======
+     * @see User
+     * @param u User to be deleted
+     * 
+     */
+    public static void deleteUser(Product u) {
+        String query = "delete from PRODUCT where productId = ?";
+        System.out.print(query);
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, u.getProductId());
+            System.out.print(stmt);
+>>>>>>> origin/Louisnew
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,6 +304,7 @@ public class DatabaseConnector {
 
     /**
      * Edit given user details in the database
+<<<<<<< HEAD
      * @param oldProduct existing product in database
      * @param newProduct modified product details to be added
      */
@@ -208,9 +318,49 @@ public class DatabaseConnector {
             stmt.setInt(2, newProduct.getPrice());
 //            again I don't think we should change customer id 
 //            stmt.setInt(3, oldProduct.getId());
+=======
+     * @param oldProd existing user in database
+     * @param newProd modified user details to be added
+     */
+    public static void editUser(Product oldProd, Product newProd) {
+        String query = "UPDATE PRODUCT SET name=?, price=?,description=? WHERE productId=?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, newProd.getProductName());
+            stmt.setInt(2, newProd.getPrice());
+            stmt.setString(3, newProd.getProductDescription());
+            stmt.setString(4, oldProd.getProductId());
+>>>>>>> origin/Louisnew
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
+=======
+    
+            /**
+     * Insert given customer to database
+     * @see User
+     * @param customer User object to be added
+     */
+public static boolean containsUser(Customer customer) {
+    String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE username = ?) AS user_exists";
+    try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setString(1, customer.getCustomerId()); // Assuming getCustomerId() returns the username
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return rs.getBoolean("user_exists");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return false;
+}
+
+
+>>>>>>> origin/Louisnew
 }
