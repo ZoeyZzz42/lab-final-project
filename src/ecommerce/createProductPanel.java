@@ -8,7 +8,7 @@ import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Product;
-import model.ProductDirectory;
+import util.DatabaseConnector;
 
 /**
  *
@@ -20,8 +20,7 @@ public class createProductPanel extends javax.swing.JPanel {
      * Creates new form createProductPanel
      */
     
-    ProductDirectory products;
-    public createProductPanel(JPanel bottomPanel, ProductDirectory products1) {
+    public createProductPanel(JPanel bottomPanel) {
         initComponents();
     }
 
@@ -136,17 +135,23 @@ public class createProductPanel extends javax.swing.JPanel {
             newProduct.setProductName(nameField.getText());
             newProduct.setPrice(Integer.parseInt(priceField.getText()));
             newProduct.setProductDescription(descriptionField.getText());
-            newProduct.productId=UUID.randomUUID().toString();
-
+            newProduct.setProductId(UUID.randomUUID().toString());
+            DatabaseConnector.addProduct(newProduct);
+            cleanup();
         } catch (Exception ex)  {
             JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
 
-        products.addProduct(newProduct);
-        System.out.println(products);
+//        products.addProduct(newProduct);
+//        System.out.println(products);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
-
+    
+    public void cleanup(){
+        nameField.setText("");
+        priceField.setText("");
+        descriptionField.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descriptionField;
