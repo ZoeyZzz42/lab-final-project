@@ -218,7 +218,7 @@ public class viewProductPanel extends javax.swing.JPanel {
             selectedProduct = products.get(selectedIdx);
             System.out.print(selectedProduct.getProductName());
             DatabaseConnector.deleteUser(selectedProduct);
-            JOptionPane.showMessageDialog(null, "User Deleted Successfully", "Successfully Deleted", HEIGHT);
+            JOptionPane.showMessageDialog(null, "Product Deleted Successfully", "Successfully Deleted", HEIGHT);
             clearFields();
             populateTable();
         }catch(Exception e){
@@ -230,7 +230,7 @@ public class viewProductPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedIdx = userTable.getSelectedRow();
         if (selectedIdx == -1){
-            JOptionPane.showMessageDialog(this, "Please select a user to edit", "Edit Users", HEIGHT);
+            JOptionPane.showMessageDialog(this, "Please select a product to edit", "Edit Users", HEIGHT);
             return;
         }
         selectedProduct = products.get(selectedIdx);
