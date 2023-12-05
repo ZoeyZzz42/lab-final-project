@@ -28,9 +28,6 @@ public class adminFrame extends javax.swing.JFrame {
         initComponents();
         employees = new CustomerDirectory();
     }
-    
-    ImageIcon icon = new ImageIcon(getClass().getResource("../"));
-    JLabel label = new JLabel(icon);
 
     /**
      * This method is called from within the constructor to initialize the form.
