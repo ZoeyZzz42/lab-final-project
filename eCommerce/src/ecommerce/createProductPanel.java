@@ -43,6 +43,8 @@ public class createProductPanel extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
+        initialStockLabel = new javax.swing.JLabel();
+        descriptionField1 = new javax.swing.JTextField();
 
         descriptionLabel.setText("Description");
 
@@ -73,6 +75,14 @@ public class createProductPanel extends javax.swing.JPanel {
             }
         });
 
+        initialStockLabel.setText("Initial Stock");
+
+        descriptionField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,12 +96,14 @@ public class createProductPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                                     .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(descriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(descriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(initialStockLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(descriptionField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(headingLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(324, 324, 324)
@@ -115,9 +127,13 @@ public class createProductPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionLabel)
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(initialStockLabel)
+                    .addComponent(descriptionField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addComponent(saveButton)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -148,11 +164,25 @@ public class createProductPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
     }//GEN-LAST:event_saveButtonActionPerformed
 
+<<<<<<< Updated upstream
+=======
+    private void descriptionField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descriptionField1ActionPerformed
+    
+    public void cleanup(){
+        nameField.setText("");
+        priceField.setText("");
+        descriptionField.setText("");
+    }
+>>>>>>> Stashed changes
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descriptionField;
+    private javax.swing.JTextField descriptionField1;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel headingLabel;
+    private javax.swing.JLabel initialStockLabel;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField priceField;
