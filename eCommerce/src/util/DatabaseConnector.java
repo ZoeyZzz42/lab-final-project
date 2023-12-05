@@ -122,6 +122,33 @@ public class DatabaseConnector {
 
         return products;
     }
+    
+        /**
+     * Return lost of all users in database
+     * @see User
+     * @return list of users
+     */
+    public static ArrayList<ShoppingCart> getSoppingCList() {
+//        return list of users from db
+        ArrayList<ShoppingCart> scs = new ArrayList<>();
+
+        String query = "SELECT * FROM SHOPPINGCART";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ShoppingCart u = new ShoppingCart();
+                u.setProductName(rs.getString("name"));
+                u.setPrice(rs.getInt("price"));
+                scs.add(u);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return scs;
+    }
 
     /**
      * Delete given user from database
