@@ -19,6 +19,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                   <Component id="headingLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
@@ -45,10 +46,50 @@
                               <Component id="emailField" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="saveButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+=======
+<<<<<<< HEAD
+                  <Component id="uploadPhotoButton" min="-2" max="-2" attributes="0"/>
+=======
+>>>>>>> origin/Louisnew
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="nameLabel" max="32767" attributes="0"/>
+                          <Component id="ageLabel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="genderLabel" alignment="1" max="32767" attributes="0"/>
+<<<<<<< HEAD
+                          <Component id="dateLabel" alignment="1" max="32767" attributes="0"/>
+=======
+                          <Component id="passwordLabel" alignment="1" max="32767" attributes="0"/>
+>>>>>>> origin/Louisnew
+                          <Component id="telephonenoLabel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="emailLabel" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nameField" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="ageField" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="genderField" min="-2" pref="150" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                          <Component id="dateField" min="-2" pref="150" max="-2" attributes="0"/>
+=======
+                          <Component id="passwordField" min="-2" pref="150" max="-2" attributes="0"/>
+>>>>>>> origin/Louisnew
+                          <Component id="telephoneField" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="emailField" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="saveButton" alignment="0" min="-2" max="-2" attributes="0"/>
+>>>>>>> refs/heads/Aniket2
                       </Group>
                   </Group>
               </Group>
+<<<<<<< HEAD
               <EmptySpace pref="209" max="32767" attributes="0"/>
+=======
+<<<<<<< HEAD
+              <EmptySpace pref="189" max="32767" attributes="0"/>
+=======
+              <EmptySpace pref="209" max="32767" attributes="0"/>
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,8 +115,18 @@
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                   <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+<<<<<<< HEAD
+                  <Component id="dateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateField" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                  <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -87,12 +138,22 @@
                   <Component id="emailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> refs/heads/Aniket2
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="roleComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="roleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="79" max="32767" attributes="0"/>
+<<<<<<< HEAD
+=======
+=======
+              <EmptySpace pref="120" max="32767" attributes="0"/>
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
               <Component id="saveButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
@@ -124,9 +185,21 @@
         <Property name="text" type="java.lang.String" value="Gender"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JLabel" name="passwordLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Password"/>
+=======
+<<<<<<< HEAD
+    <Component class="javax.swing.JLabel" name="dateLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start Date(yyyy-mm-dd)"/>
+=======
+    <Component class="javax.swing.JLabel" name="passwordLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password"/>
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="telephonenoLabel">
@@ -151,9 +224,21 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="genderFieldActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JTextField" name="passwordField">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+=======
+<<<<<<< HEAD
+    <Component class="javax.swing.JTextField" name="dateField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateFieldActionPerformed"/>
+=======
+    <Component class="javax.swing.JTextField" name="passwordField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="telephoneField">
@@ -174,7 +259,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JComboBox" name="roleComboBox">
+=======
+<<<<<<< HEAD
+    <Component class="javax.swing.JButton" name="uploadPhotoButton">
+>>>>>>> refs/heads/Aniket2
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -193,5 +283,10 @@
         <Property name="text" type="java.lang.String" value="Role"/>
       </Properties>
     </Component>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
   </SubComponents>
 </Form>

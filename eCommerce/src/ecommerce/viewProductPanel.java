@@ -4,7 +4,14 @@
  */
 package ecommerce;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.RowFilter;
@@ -12,13 +19,31 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.Product;
 import model.ProductDirectory;
+<<<<<<< HEAD
 import util.DatabaseConnector;
+=======
+<<<<<<< HEAD
+=======
+import util.DatabaseConnector;
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 
 /**
  *
  * @author jq
  */
 public class viewProductPanel extends javax.swing.JPanel {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    ProductDirectory products;
+    /**
+     * Creates new form viewProductPanel
+     */
+    public viewProductPanel(JPanel bottomPanel, ProductDirectory products1) {
+        initComponents();
+=======
+>>>>>>> refs/heads/Aniket2
         private ArrayList<Product> products;
     private Product selectedProduct;
     /**
@@ -27,6 +52,10 @@ public class viewProductPanel extends javax.swing.JPanel {
     public viewProductPanel(JPanel bottomPanel) {
         initComponents();
         populateTable();
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
     }
 
     /**
@@ -42,6 +71,13 @@ public class viewProductPanel extends javax.swing.JPanel {
         userTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         descriptionField = new javax.swing.JTextField();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        viewButton = new javax.swing.JButton();
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
@@ -51,14 +87,33 @@ public class viewProductPanel extends javax.swing.JPanel {
         searchField = new javax.swing.JTextField();
         priceField = new javax.swing.JTextField();
         headingLabel = new javax.swing.JLabel();
+<<<<<<< HEAD
         saveButton = new javax.swing.JButton();
+=======
+<<<<<<< HEAD
+=======
+        saveButton = new javax.swing.JButton();
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
+<<<<<<< HEAD
                 "productID", "Name", "Price", "Description"
+=======
+<<<<<<< HEAD
+                "Name", "Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+=======
+                "Name", "Price", "Description"
+>>>>>>> refs/heads/Aniket2
             }
         ) {
             Class[] types = new Class [] {
@@ -71,6 +126,10 @@ public class viewProductPanel extends javax.swing.JPanel {
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -86,6 +145,19 @@ public class viewProductPanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        viewButton.setText("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         deleteButton.setText("Delete");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +199,11 @@ public class viewProductPanel extends javax.swing.JPanel {
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Product Details");
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> refs/heads/Aniket2
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,15 +211,36 @@ public class viewProductPanel extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                .addGap(122, 122, 122)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateButton))
+=======
+>>>>>>> refs/heads/Aniket2
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -158,6 +256,21 @@ public class viewProductPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                        .addComponent(searchField)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(124, 124, 124)
+                        .addComponent(deleteButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(113, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+>>>>>>> refs/heads/Aniket2
                                         .addComponent(searchField))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(updateButton)
@@ -170,6 +283,10 @@ public class viewProductPanel extends javax.swing.JPanel {
                         .addGap(224, 224, 224)
                         .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(121, Short.MAX_VALUE))
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,6 +298,14 @@ public class viewProductPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    .addComponent(viewButton)
+                    .addComponent(updateButton))
+                .addGap(14, 14, 14)
+=======
+>>>>>>> refs/heads/Aniket2
                     .addComponent(updateButton)
                     .addComponent(saveButton))
                 .addGap(16, 16, 16)
@@ -188,6 +313,10 @@ public class viewProductPanel extends javax.swing.JPanel {
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,7 +328,19 @@ public class viewProductPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionLabel)
                     .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addContainerGap(241, Short.MAX_VALUE))
+=======
+<<<<<<< HEAD
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(91, Short.MAX_VALUE))
+=======
+                .addContainerGap(241, Short.MAX_VALUE))
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -207,6 +348,36 @@ public class viewProductPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_descriptionFieldActionPerformed
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = userTable.getSelectedRow();
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to be viewed", "Error - No selection", JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            Product selectedProd = (Product) model.getValueAt(selectedIndex, 0);
+            nameField.setText(selectedProd.getProductName());
+            priceField.setText(String.valueOf(selectedProd.getPrice()));
+            descriptionField.setText(selectedProd.getProductDescription());
+        }
+    }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = userTable.getSelectedRow();
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to be deleted", "Error - No selection", JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            Product selectedProducts = (Product) model.getValueAt(selectedIndex, 0);
+            products.removeUser(selectedProducts);
+            JOptionPane.showMessageDialog(this, "User Information is deleted successfully.");
+            populateTable();
+=======
+>>>>>>> refs/heads/Aniket2
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
 
         int selectedIdx = userTable.getSelectedRow();
@@ -223,11 +394,34 @@ public class viewProductPanel extends javax.swing.JPanel {
             populateTable();
         }catch(Exception e){
         JOptionPane.showMessageDialog(this, e.getMessage());
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        Product selectedProduct;
+        int selectedIndex = userTable.getSelectedRow();
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to be updated", "Error - No selection", JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+            selectedProduct = (Product) model.getValueAt(selectedIndex, 0);
+            selectedProduct.setProductName(nameField.getText());
+            selectedProduct.setPrice(Integer.parseInt(priceField.getText()));
+            selectedProduct.setProductDescription(descriptionField.getText());
+
+            JOptionPane.showMessageDialog(this, "Employee Details Updated", "Success", HEIGHT);
+        }
+    
+=======
+>>>>>>> refs/heads/Aniket2
         int selectedIdx = userTable.getSelectedRow();
         if (selectedIdx == -1){
             JOptionPane.showMessageDialog(this, "Please select a user to edit", "Edit Users", HEIGHT);
@@ -237,6 +431,10 @@ public class viewProductPanel extends javax.swing.JPanel {
         nameField.setText(selectedProduct.getProductName());
         priceField.setText(Integer.toString(selectedProduct.getPrice()));
         descriptionField.setText(selectedProduct.getProductDescription());
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
@@ -254,6 +452,22 @@ public class viewProductPanel extends javax.swing.JPanel {
         userTable.setRowSorter(t);
         t.setRowFilter(RowFilter.regexFilter(searchField.getText().trim()));
     }//GEN-LAST:event_searchFieldKeyPressed
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+        model.setRowCount(0);
+        for (Product u : products.getAllProducts()) {
+            Object[] row = new Object[2];
+            row[0] = u;
+            row[1] = u.getPrice();
+            model.addRow(row);
+    }
+            clearFields();
+=======
+>>>>>>> refs/heads/Aniket2
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         Product newProd = new Product();
@@ -289,6 +503,10 @@ public class viewProductPanel extends javax.swing.JPanel {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 }
     
     private void clearFields() {
@@ -310,10 +528,23 @@ public class viewProductPanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField priceField;
     private javax.swing.JLabel priceLabel;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    private javax.swing.JTextField searchField;
+    private javax.swing.JButton updateButton;
+    private javax.swing.JTable userTable;
+    private javax.swing.JButton viewButton;
+=======
+>>>>>>> refs/heads/Aniket2
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField searchField;
     private javax.swing.JButton updateButton;
     private javax.swing.JTable userTable;
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
     // End of variables declaration//GEN-END:variables
     }
 

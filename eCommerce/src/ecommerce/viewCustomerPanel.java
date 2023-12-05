@@ -335,7 +335,15 @@ public class viewCustomerPanel extends javax.swing.JPanel {
             selectedUser.setAge(Integer.parseInt(ageField.getText()));
             selectedUser.setGender(genderField.getText());
             selectedUser.setRegisterDate(LocalDate.parse(dateField.getText()));
+<<<<<<< HEAD
             selectedUser.setTeleNo((int) Long.parseLong(telephoneField.getText()));
+=======
+<<<<<<< HEAD
+            selectedUser.setTeleNo(Long.parseLong(telephoneField.getText()));
+=======
+            selectedUser.setTeleNo((int) Long.parseLong(telephoneField.getText()));
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
             selectedUser.setEmail(emailField.getText());
             
             JOptionPane.showMessageDialog(this, "Employee Details Updated", "Success", HEIGHT);

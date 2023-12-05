@@ -8,7 +8,15 @@ import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Product;
+<<<<<<< HEAD
 import util.DatabaseConnector;
+=======
+<<<<<<< HEAD
+import model.ProductDirectory;
+=======
+import util.DatabaseConnector;
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 
 /**
  *
@@ -20,7 +28,16 @@ public class createProductPanel extends javax.swing.JPanel {
      * Creates new form createProductPanel
      */
     
+<<<<<<< HEAD
     public createProductPanel(JPanel bottomPanel) {
+=======
+<<<<<<< HEAD
+    ProductDirectory products;
+    public createProductPanel(JPanel bottomPanel, ProductDirectory products1) {
+=======
+    public createProductPanel(JPanel bottomPanel) {
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         initComponents();
     }
 
@@ -135,13 +152,34 @@ public class createProductPanel extends javax.swing.JPanel {
             newProduct.setProductName(nameField.getText());
             newProduct.setPrice(Integer.parseInt(priceField.getText()));
             newProduct.setProductDescription(descriptionField.getText());
+<<<<<<< HEAD
             newProduct.setProductId(UUID.randomUUID().toString());
             DatabaseConnector.addProduct(newProduct);
             cleanup();
+=======
+<<<<<<< HEAD
+            newProduct.productId=UUID.randomUUID().toString();
+
+=======
+            newProduct.setProductId(UUID.randomUUID().toString());
+            DatabaseConnector.addProduct(newProduct);
+            cleanup();
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
         } catch (Exception ex)  {
             JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        products.addProduct(newProduct);
+        System.out.println(products);
+        JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+=======
+>>>>>>> refs/heads/Aniket2
 //        products.addProduct(newProduct);
 //        System.out.println(products);
         JOptionPane.showMessageDialog(this, "Employee Details Saved", "Success", HEIGHT);
@@ -152,6 +190,10 @@ public class createProductPanel extends javax.swing.JPanel {
         priceField.setText("");
         descriptionField.setText("");
     }
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Louisnew
+>>>>>>> refs/heads/Aniket2
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField descriptionField;
