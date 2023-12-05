@@ -262,7 +262,7 @@ public class viewProductPanel extends javax.swing.JPanel {
             newProd.setPrice(Integer.parseInt(priceField.getText()));
             newProd.setProductDescription(descriptionField.getText());
             
-            DatabaseConnector.editUser(selectedProduct, newProd);
+            DatabaseConnector.editProduct(selectedProduct, newProd);
             JOptionPane.showMessageDialog(null, "Product Edit Successfully", "Successfully Edit", HEIGHT);
             clearFields();
             populateTable();

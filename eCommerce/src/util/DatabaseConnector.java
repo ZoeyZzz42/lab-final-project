@@ -18,7 +18,7 @@ public class DatabaseConnector {
 
     private static final String URL = "jdbc:mysql://localhost:3306/Ecommerce?useSSL=false";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "123";
 
     /**
      * Privatized constructor so as to not allow object creation
@@ -26,20 +26,16 @@ public class DatabaseConnector {
     private DatabaseConnector() {
     }
 
-    /**
-     * Insert given user to database
-     * @see User
-     * @param user User object to be added
-     */
-    public static void addProduct(Product user) {
+
+    public static void addProduct(Product product) {
         //add to database
         String query = "INSERT INTO PRODUCT(PRODUCTID,NAME,PRICE, DESCRIPTION) VALUES(?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, user.getProductId());
-            stmt.setString(2, user.getProductName());
-            stmt.setInt(3, user.getPrice());
-            stmt.setString(4, user.getProductDescription());
+            stmt.setString(1, product.getProductId());
+            stmt.setString(2, product.getProductName());
+            stmt.setInt(3, product.getPrice());
+            stmt.setString(4, product.getProductDescription());
             int rows = stmt.executeUpdate();
             System.out.println("Rows impacted : " + rows);
             conn.close();
@@ -48,11 +44,7 @@ public class DatabaseConnector {
         }
     }
     
-        /**
-     * Insert given customer to database
-     * @see User
-     * @param customer User object to be added
-     */
+
     public static void addUser(Customer customer) {
         //add to database
         String query = "INSERT INTO CUSTOMER(customerId,name,gender,age, email,telephone,password) VALUES(?,?,?,?,?,?,?)";
@@ -73,11 +65,7 @@ public class DatabaseConnector {
         }
     }
 
-    /**
-     * Return lost of all users in database
-     * @see User
-     * @return list of users
-     */
+
     public static ArrayList<Product> getAllusers() {
 //        return list of users from db
         ArrayList<Product> products = new ArrayList<>();
@@ -90,8 +78,8 @@ public class DatabaseConnector {
                 Product u = new Product();
                 u.setProductId(rs.getString("productId"));
                 u.setProductName(rs.getString("name"));
-                u.setPrice(rs.getInt("price"));
                 u.setProductDescription(rs.getString("description"));
+                u.setPrice(rs.getInt("price"));
                 products.add(u);
             }
             rs.close();
@@ -102,12 +90,7 @@ public class DatabaseConnector {
         return products;
     }
 
-    /**
-     * Delete given user from database
-     * @see User
-     * @param u User to be deleted
-     * 
-     */
+
     public static void deleteUser(Product u) {
         String query = "delete from PRODUCT where productId = ?";
         System.out.print(query);
@@ -127,7 +110,7 @@ public class DatabaseConnector {
      * @param oldProd existing user in database
      * @param newProd modified user details to be added
      */
-    public static void editUser(Product oldProd, Product newProd) {
+    public static void editProduct(Product oldProd, Product newProd) {
         String query = "UPDATE PRODUCT SET name=?, price=?,description=? WHERE productId=?";
 
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -141,12 +124,30 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
     }
+
+    public static boolean validateUser(String username, String password) {
+        String query = "SELECT password FROM CUSTOMER WHERE username = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
+
+                // 比较散列值
+                return storedPassword.equals(password);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
     
-            /**
-     * Insert given customer to database
-     * @see User
-     * @param customer User object to be added
-     */
+
 public static boolean containsUser(Customer customer) {
     String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE name = ?) AS user_exists";
     try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -162,13 +163,45 @@ public static boolean containsUser(Customer customer) {
                JOptionPane.showMessageDialog(null, "Login successful");
            }
              return userExists;
-            
+
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
     return false;
 }
+
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/Ecommerce";
+        String user = "root";
+        String password = "123";
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String query = "SELECT * FROM PRODUCT";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ArrayList<Product> products = new ArrayList<>();
+                Product u = new Product();
+                u.setProductId(rs.getString("productId"));
+                u.setProductName(rs.getString("name"));
+                u.setProductDescription(rs.getString("description"));
+                u.setPrice(rs.getInt("price"));
+                products.add(u);
+                for (Product product : products) {
+                    if (product.getProductName().equals("Product1")) {
+                        int priceOfProduct1 = 0;
+                        priceOfProduct1 = product.getPrice();
+                        System.out.println(priceOfProduct1);
+                        break;
+                    }
+                }
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

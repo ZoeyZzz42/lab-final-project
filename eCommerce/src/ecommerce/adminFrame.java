@@ -5,11 +5,18 @@
 package ecommerce;
 
 import java.awt.CardLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import javax.swing.*;
+
 import model.CustomerDirectory;
-import model.ProductDirectory;
+import model.Product;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import util.DatabaseConnector;
 
 /**
  *
@@ -26,6 +33,20 @@ public class adminFrame extends javax.swing.JFrame {
     public adminFrame() {
         initComponents();
         employees = new CustomerDirectory();
+
+    }
+
+    public static DefaultPieDataset createAndShowPieChart() {
+        ArrayList<Product> products = new ArrayList<>();
+        products = DatabaseConnector.getAllusers();
+
+        // Create the dataset
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (Product product : products) {
+            dataset.setValue(product.getProductName(), product.getPrice());
+        }
+
+        return dataset;
     }
 
     /**
@@ -42,6 +63,7 @@ public class adminFrame extends javax.swing.JFrame {
         viewProductButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        visualBtn = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,6 +93,13 @@ public class adminFrame extends javax.swing.JFrame {
             }
         });
 
+        visualBtn.setText("改成想要的");
+        visualBtn.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                visualBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,7 +109,9 @@ public class adminFrame extends javax.swing.JFrame {
                 .addComponent(viewProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
+                .addGap(129, 129, 129)
+                    .addComponent(visualBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+            )
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(290, 290, 290)
                 .addComponent(jLabel1)
@@ -97,11 +128,15 @@ public class adminFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backBtn)))
+                        .addComponent(backBtn))
+                        .addGroup(jPanel1Layout.createSequentialGroup())
+                )
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewProductButton)
-                    .addComponent(viewButton))
+                    .addComponent(viewButton)
+                        .addComponent(visualBtn)
+                )
                 .addGap(24, 24, 24))
         );
 
@@ -161,6 +196,65 @@ public class adminFrame extends javax.swing.JFrame {
         mainFrame.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void visualBtnActionPerformed(java.awt.event.ActionEvent evt){
+//        DefaultPieDataset dataset = createAndShowPieChart();
+        // Create the chart
+//        JFreeChart pieChart = ChartFactory.createPieChart("Product Price Distribution", dataset, true, true, false);
+        // 创建柱状图
+//        ArrayList<Product> products = DatabaseConnector.getAllusers();
+//        DefaultCategoryDataset dataset1 = new DefaultCategoryDataset();
+//
+//        // Filter for Product1
+//        int priceOfProduct1 = 0;
+//        int count = 1;
+//        for (Product product : products) {
+//            if (product.getProductName().equals("Product1")) {
+//                priceOfProduct1 = product.getPrice();
+//                System.out.println(priceOfProduct1);
+//                // Create the dataset
+//                DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//                dataset1.addValue(priceOfProduct1, "Price", "Product1");
+//                count++;
+//            }
+//        }
+
+        ArrayList<Product> products = DatabaseConnector.getAllusers();
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (Product product : products) {
+            dataset.addValue(product.getPrice(), "Price", product.getProductName());
+        }
+
+
+
+        // Create the chart
+        JFreeChart barChart = ChartFactory.createBarChart(
+                "Product Price Chart",
+                "Product",
+                "Price",
+                dataset);
+
+        // Display the chart
+        ChartPanel chartPanel = new ChartPanel(barChart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+//        bottomPanel.removeAll();
+//        bottomPanel.add(chartPanel);
+//        bottomPanel.revalidate();
+//        bottomPanel.repaint();
+        bottomPanel.setLayout(new CardLayout());
+
+        bottomPanel.add("ViewScreen", chartPanel);
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        layout.next(bottomPanel);
+//        initComponents();
+//        JFrame frame = new JFrame();
+//        frame.getContentPane().add(chartPanel);
+//        frame.setTitle("Product Price Analysis");
+//        frame.setSize(800, 600);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +291,7 @@ public class adminFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton visualBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel jLabel1;

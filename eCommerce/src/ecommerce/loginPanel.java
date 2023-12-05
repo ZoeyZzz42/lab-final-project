@@ -16,11 +16,13 @@ import util.DatabaseConnector;
  * @author jq
  */
 public class loginPanel extends javax.swing.JPanel {
+    private MainJFrame mainJFrame;
     CustomerDirectory users;
     /**
      * Creates new form lgoinPanel
      */
-    public loginPanel(JPanel bottomPanel, CustomerDirectory employees) {
+    public loginPanel(JPanel bottomPanel, CustomerDirectory employees, MainJFrame mainJFrame) {
+        this.mainJFrame = mainJFrame;
         initComponents();
         this.users = employees;
     }
@@ -120,7 +122,16 @@ public class loginPanel extends javax.swing.JPanel {
         customer.setName(username);
 
                 // Call the loginUser() method to validate credentials
-        DatabaseConnector.containsUser(customer);
+        if(DatabaseConnector.containsUser(customer) == true){
+            switch (username){
+                case "Zoey":
+                    adminFrame adminFrame = new adminFrame();
+                    adminFrame.setVisible(true);
+                    mainJFrame.setVisible(false);
+
+            }
+        }
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
 

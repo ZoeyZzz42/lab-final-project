@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Customer;
 import model.CustomerDirectory;
+import util.DatabaseConnector;
 
 /**
  *
@@ -107,7 +108,7 @@ public class custLogin extends javax.swing.JPanel {
 
                 // Call the loginUser() method to validate credentials
                 Customer loggedInUser = users.loginUser(username, password);
-                if (loggedInUser != null) {
+                if (DatabaseConnector.validateUser(username,password)) {
                     JOptionPane.showMessageDialog(this, "Login successful!");
                 } else {
                     // Login failed, display error message or provide feedback to the user
