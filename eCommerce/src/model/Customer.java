@@ -97,6 +97,15 @@ public class Customer {
     private String password;
     int teleNo;
     public ImageIcon profilePic;
+    String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     /**
      * @return the password

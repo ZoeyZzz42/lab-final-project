@@ -6,6 +6,7 @@ package util;
 
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Customer;
 import model.Product;
@@ -147,6 +148,8 @@ public class DatabaseConnector {
      * @see User
      * @param customer User object to be added
      */
+    
+/*
 public static boolean containsUser(Customer customer) {
     String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE name = ?) AS user_exists";
     try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -168,7 +171,36 @@ public static boolean containsUser(Customer customer) {
         e.printStackTrace();
     }
     return false;
+}*/
+    
+    public static Customer getUser(String username) {
+    String query = "SELECT * FROM CUSTOMER WHERE name = ?";
+    try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setString(1, username);
+
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            Customer user = new Customer();
+            user.setCustomerID(rs.getString("customerId"));
+            user.setName(rs.getString("name"));
+            user.setAge(rs.getInt("age"));
+            user.setGender(rs.getString("gender"));
+            user.setRegisterDate(rs.getDate("registerDate").toLocalDate());
+            user.setEmail(rs.getString("email"));
+            user.setTeleNo(rs.getInt("teleNo"));
+            user.setProfilePic(new ImageIcon(rs.getBytes("profilePic")));
+            user.setRole(rs.getString("role"));
+            user.setPassword(rs.getString("password"));
+
+            return user;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null; 
 }
+
 
 
 }

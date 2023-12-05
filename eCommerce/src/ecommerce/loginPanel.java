@@ -4,11 +4,13 @@
  */
 package ecommerce;
 
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Customer;
 import model.CustomerDirectory;
+import model.ProductDirectory;
 import util.DatabaseConnector;
 
 /**
@@ -16,6 +18,8 @@ import util.DatabaseConnector;
  * @author jq
  */
 public class loginPanel extends javax.swing.JPanel {
+    JPanel bottomPanel;
+    ProductDirectory products;
     CustomerDirectory users;
     /**
      * Creates new form lgoinPanel
@@ -23,6 +27,10 @@ public class loginPanel extends javax.swing.JPanel {
     public loginPanel(JPanel bottomPanel, CustomerDirectory employees) {
         initComponents();
         this.users = employees;
+        this.bottomPanel = bottomPanel;
+        
+        users = new CustomerDirectory();
+        products = new ProductDirectory();
     }
 
     /**
@@ -116,11 +124,15 @@ public class loginPanel extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = nameField.getText();
         String password = passwordField.getText();
+        
         Customer customer = new Customer();
         customer.setName(username);
 
-                // Call the loginUser() method to validate credentials
-        DatabaseConnector.containsUser(customer);
+        Customer returnedUser = DatabaseConnector.getUser(username);
+        if(returnedUser!= null){
+            switchToRolePanel(returnedUser.getRole());
+        }
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
 
@@ -132,4 +144,31 @@ public class loginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void switchToRolePanel(String role) {
+        
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+
+    switch (role) {
+        case "Customer":
+            viewShoppingCartPanel shoppingPanel = new viewShoppingCartPanel(bottomPanel);
+            bottomPanel.add("CustomerScreen", shoppingPanel);
+        case "Admin":
+            adminFrame adminFrame = new adminFrame();
+            bottomPanel.add("Admincreen", adminFrame);
+            layout.next(bottomPanel);
+            break;
+        case "Seller":
+            viewProductPanel viewProdPanel = new viewProductPanel(bottomPanel);
+            bottomPanel.add("SellerScreen", viewProdPanel);
+            layout.next(bottomPanel);
+            break;
+        default:
+            System.out.println("Unknown role");
+            break;
+    }
+    bottomPanel.validate();
+    bottomPanel.repaint();
+
+    }
 }

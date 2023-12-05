@@ -19,27 +19,34 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="nameLabel" max="32767" attributes="0"/>
-                          <Component id="ageLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="genderLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="passwordLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="telephonenoLabel" alignment="1" max="32767" attributes="0"/>
-                          <Component id="emailLabel" alignment="1" max="32767" attributes="0"/>
+                  <Component id="headingLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="roleLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Component id="roleComboBox" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nameField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="ageField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="genderField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="passwordField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="telephoneField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="emailField" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="saveButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="nameLabel" max="32767" attributes="0"/>
+                              <Component id="ageLabel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="genderLabel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="passwordLabel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="telephonenoLabel" alignment="1" max="32767" attributes="0"/>
+                              <Component id="emailLabel" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nameField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="ageField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="genderField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="passwordField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="telephoneField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="emailField" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="saveButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Component id="headingLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="209" max="32767" attributes="0"/>
           </Group>
@@ -80,7 +87,12 @@
                   <Component id="emailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="emailField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="120" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="roleComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="roleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
               <Component id="saveButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
           </Group>
@@ -161,6 +173,25 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="roleComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Customer"/>
+            <StringItem index="1" value="Admin"/>
+            <StringItem index="2" value="Seller"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="roleLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Role"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

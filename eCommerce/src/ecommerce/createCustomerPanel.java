@@ -5,6 +5,7 @@
 package ecommerce;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -46,11 +47,6 @@ public class createCustomerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
         headingLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         ageLabel = new javax.swing.JLabel();
@@ -60,13 +56,13 @@ public class createCustomerPanel extends javax.swing.JPanel {
         emailLabel = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
         ageField = new javax.swing.JTextField();
+        genderField = new javax.swing.JTextField();
         passwordField = new javax.swing.JTextField();
         telephoneField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
-        femaleRadioBtn = new javax.swing.JRadioButton();
-        preferNotRadioBtn = new javax.swing.JRadioButton();
-        maleRadioBtn = new javax.swing.JRadioButton();
+        roleComboBox = new javax.swing.JComboBox<>();
+        roleLabel = new javax.swing.JLabel();
 
         headingLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -87,6 +83,12 @@ public class createCustomerPanel extends javax.swing.JPanel {
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
+            }
+        });
+
+        genderField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genderFieldActionPerformed(evt);
             }
         });
 
@@ -115,19 +117,9 @@ public class createCustomerPanel extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(femaleRadioBtn);
-        femaleRadioBtn.setText("Female");
+        roleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Admin", "Seller" }));
 
-        buttonGroup1.add(preferNotRadioBtn);
-        preferNotRadioBtn.setText("Prefer not to say");
-        preferNotRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                preferNotRadioBtnActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(maleRadioBtn);
-        maleRadioBtn.setText("Male");
+        roleLabel.setText("Role");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,31 +128,29 @@ public class createCustomerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(genderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(telephonenoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(saveButton)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(preferNotRadioBtn)
-                                    .addComponent(maleRadioBtn, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(femaleRadioBtn, javax.swing.GroupLayout.Alignment.LEADING)))))
-                    .addComponent(headingLabel))
+                    .addComponent(headingLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(roleLabel)
+                            .addGap(77, 77, 77)
+                            .addComponent(roleComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(genderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(telephonenoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(saveButton)))))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -176,27 +166,27 @@ public class createCustomerPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ageLabel)
                     .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderLabel)
-                    .addComponent(femaleRadioBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maleRadioBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(preferNotRadioBtn)
-                .addGap(25, 25, 25)
+                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telephonenoLabel)
                     .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(saveButton)
                 .addGap(82, 82, 82))
         );
@@ -229,8 +219,9 @@ public class createCustomerPanel extends javax.swing.JPanel {
         String password = passwordField.getText();
         String telephone = telephoneField.getText().trim();
         String email = emailField.getText().trim();
+        String role = roleComboBox.getSelectedItem().toString();
         
-     if (name.isEmpty() || ageText.isEmpty() || gender == null || password.isEmpty() || telephone.isEmpty() || email.isEmpty()) {
+     if (name.isEmpty() || ageText.isEmpty() || gender == null || password.isEmpty() || telephone.isEmpty() || email.isEmpty() || role.isEmpty()) {
         JOptionPane.showMessageDialog(this, "All fields must be filled out.", "Validation Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -264,6 +255,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a gender.", "Validation Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
             
         try{
         newUser.setName(name);
@@ -273,6 +265,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
         newUser.setTeleNo(Integer.parseInt(telephone));
         newUser.setEmail(email);
         newUser.setCustomerID(UUID.randomUUID().toString());
+        newUser.setRole(role);
         DatabaseConnector.addUser(newUser);
         } catch (Exception ex)  {
               JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
@@ -283,15 +276,7 @@ public class createCustomerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_saveButtonActionPerformed
 
      private String getSelectedGender() {
-        if (maleRadioBtn.isSelected()) {
-            return "Male";
-        } else if (femaleRadioBtn.isSelected()) {
-            return "Female";
-        } else if (preferNotRadioBtn.isSelected()) {
-            return "Prefer not to say";
-        } else {
-            return null;
-        }
+        return genderField.getSelectedText();
     }
      
     private void preferNotRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preferNotRadioBtnActionPerformed
@@ -302,22 +287,17 @@ public class createCustomerPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageField;
     private javax.swing.JLabel ageLabel;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JRadioButton femaleRadioBtn;
+    private javax.swing.JTextField genderField;
     private javax.swing.JLabel genderLabel;
     private javax.swing.JLabel headingLabel;
-    private javax.swing.JRadioButton maleRadioBtn;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JRadioButton preferNotRadioBtn;
+    private javax.swing.JComboBox<String> roleComboBox;
+    private javax.swing.JLabel roleLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField telephoneField;
     private javax.swing.JLabel telephonenoLabel;
