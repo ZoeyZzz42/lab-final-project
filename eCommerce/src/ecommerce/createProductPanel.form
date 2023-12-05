@@ -26,12 +26,14 @@
                                   <Component id="nameLabel" alignment="1" pref="140" max="32767" attributes="0"/>
                                   <Component id="priceLabel" alignment="1" max="32767" attributes="0"/>
                                   <Component id="descriptionLabel" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="initialStockLabel" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nameField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="priceField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="descriptionField" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="descriptionField1" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="headingLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -66,9 +68,14 @@
                   <Component id="descriptionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="descriptionField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="initialStockLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="descriptionField1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="saveButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="220" max="32767" attributes="0"/>
+              <EmptySpace pref="217" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,6 +123,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="initialStockLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Initial Stock"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="descriptionField1">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="descriptionField1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
