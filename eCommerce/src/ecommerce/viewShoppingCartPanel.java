@@ -22,6 +22,7 @@ import util.DatabaseConnector;
 public class viewShoppingCartPanel extends javax.swing.JPanel {
     private ArrayList<Product> products;
     private ShoppingCart selectedItem;
+    private ShoppingCart selectedProd;
     private ArrayList<ShoppingCart> shoppingList;
     /**
      * Creates new form shoppingCartPanel
@@ -127,23 +128,6 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
         }
         JOptionPane.showMessageDialog(this, "Product Add into Cart", "Success", HEIGHT);
-//        try{
-//            
-//            selectedItem = shoppingList.get(selectedIdx);
-//            newDl.setName(selectedItem.getName());
-//            newDl.setDlId(UUID.randomUUID().toString());
-//            DatabaseConnector.addDeliver(newDl);
-//            
-//            DatabaseConnector.deleteItemInSc(selectedItem);
-//            populateTable();
-//        } catch (Exception ex)  {
-//            JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
-//        }
-//
-////        products.addProduct(newProduct);
-////        System.out.println(products);
-//        JOptionPane.showMessageDialog(this, "Product Add into Cart", "Success", HEIGHT);
-
     }//GEN-LAST:event_submitButtonActionPerformed
 
     public void populateTable() {
