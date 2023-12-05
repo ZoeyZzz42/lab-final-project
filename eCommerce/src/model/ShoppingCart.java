@@ -19,29 +19,29 @@ public class ShoppingCart {
     /**
      * @return the scID
      */
-    public String getProductName() {
+    public String getScID() {
         return scID;
     }
 
     /**
-     * @param productName the scID to set
+     * @param scID the scID to set
      */
-    public void setProductName(String productName) {
-        this.scID = productName;
+    public void setScID(String scID) {
+        this.scID = scID;
     }
 
     /**
      * @return the name
      */
-    public String getProductId() {
+    public String getName() {
         return name;
     }
 
     /**
-     * @param productId the name to set
+     * @param name the name to set
      */
-    public void setProductId(String productId) {
-        this.name = productId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -57,4 +57,6 @@ public class ShoppingCart {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    
 }

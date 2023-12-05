@@ -4,10 +4,13 @@
  */
 package ecommerce;
 
+import static java.awt.image.ImageObserver.HEIGHT;
 import java.util.ArrayList;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import model.Deliver;
 import model.Product;
 import model.ShoppingCart;
 import util.DatabaseConnector;
@@ -18,6 +21,7 @@ import util.DatabaseConnector;
  */
 public class viewShoppingCartPanel extends javax.swing.JPanel {
     private ArrayList<Product> products;
+    private ShoppingCart selectedItem;
     private ArrayList<ShoppingCart> shoppingList;
     /**
      * Creates new form shoppingCartPanel
@@ -39,6 +43,7 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
         headingLabel = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
 
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -49,7 +54,7 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -69,30 +74,77 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Shopping Cart Details");
 
+        submitButton.setText("Submit Order");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(187, 187, 187)
+                            .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(121, 121, 121)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addGap(125, 125, 125)
+                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(220, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        Deliver newDl = new Deliver();
+        int[] cart = userTable.getSelectedRows();
+        try{
+            int i = 0;
+        while (i < cart.length){
+            selectedItem = shoppingList.get(i);
+            newDl.setName(selectedItem.getName());
+            newDl.setDlId(UUID.randomUUID().toString());
+            DatabaseConnector.addDeliver(newDl);
+            i+= 1;
+            
+        }
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
+        }
+        JOptionPane.showMessageDialog(this, "Product Add into Cart", "Success", HEIGHT);
+//        try{
+//            
+//            selectedItem = shoppingList.get(selectedIdx);
+//            newDl.setName(selectedItem.getName());
+//            newDl.setDlId(UUID.randomUUID().toString());
+//            DatabaseConnector.addDeliver(newDl);
+//            
+//            DatabaseConnector.deleteItemInSc(selectedItem);
+//            populateTable();
+//        } catch (Exception ex)  {
+//            JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);
+//        }
+//
+////        products.addProduct(newProduct);
+////        System.out.println(products);
+//        JOptionPane.showMessageDialog(this, "Product Add into Cart", "Success", HEIGHT);
+
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     public void populateTable() {
         try{
@@ -102,7 +154,7 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
             for (ShoppingCart u:shoppingList){
                 Object[] row = new Object[2];
 //                row[0] = u.getProductId();
-                row[0] = u.getProductName();
+                row[0] = u.getName();
                 row[1] = u.getPrice();
                 model.addRow(row);
             }
@@ -113,6 +165,7 @@ public class viewShoppingCartPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headingLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton submitButton;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }

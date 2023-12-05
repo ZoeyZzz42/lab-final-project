@@ -7,6 +7,7 @@ package util;
 import java.sql.*;
 import java.util.ArrayList;
 import model.Customer;
+import model.Deliver;
 import model.Product;
 import model.ShoppingCart;
 
@@ -83,8 +84,8 @@ public class DatabaseConnector {
         String query = "INSERT INTO SHOPPINGCART(SCID,NAME,PRICE) VALUES(?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, sc.getProductId());
-            stmt.setString(2, sc.getProductName());
+            stmt.setString(1, sc.getScID());
+            stmt.setString(2, sc.getName());
             stmt.setInt(3, sc.getPrice());
             int rows = stmt.executeUpdate();
             System.out.println("Rows impacted : " + rows);
@@ -93,7 +94,26 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
     }
-
+        /**
+     * Insert given sc to database
+     * @see User
+     * @param sc User object to be added
+     */
+    public static void addDeliver(Deliver dl) {
+        //add to database
+        String query = "INSERT INTO DELIVER(dlId,NAME) VALUES(?,?)";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, dl.getDlId());
+            stmt.setString(2, dl.getName());
+            int rows = stmt.executeUpdate();
+            System.out.println("Rows impacted : " + rows);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * Return lost of all users in database
      * @see User
@@ -138,7 +158,7 @@ public class DatabaseConnector {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 ShoppingCart u = new ShoppingCart();
-                u.setProductName(rs.getString("name"));
+                u.setName(rs.getString("name"));
                 u.setPrice(rs.getInt("price"));
                 scs.add(u);
             }
@@ -163,6 +183,26 @@ public class DatabaseConnector {
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, u.getProductId());
+            System.out.print(stmt);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
+     * Delete given user from database
+     * @see User
+     * @param u User to be deleted
+     * 
+     */
+    public static void deleteItemInSc(ShoppingCart u) {
+        String query = "delete from SHOPPINGCART where scID = ?";
+        System.out.print(query);
+
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, u.getScID());
             System.out.print(stmt);
             stmt.executeUpdate();
         } catch (SQLException e) {
