@@ -46,6 +46,7 @@ public class adminFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-admin.png"))); // NOI18N
         jLabel1.setText("Admin");
 
         viewProductButton.setText("View Product");
