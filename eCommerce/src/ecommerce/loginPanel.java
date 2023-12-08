@@ -4,12 +4,11 @@
  */
 package ecommerce;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Customer;
 import model.CustomerDirectory;
 import util.DatabaseConnector;
+import javax.swing.UIManager;
 
 /**
  *
@@ -38,10 +37,11 @@ public class loginPanel extends javax.swing.JPanel {
 
         headingLabel = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JTextField();
         nameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
+        showPasswordCheckBox = new javax.swing.JCheckBox();
+        passwordField = new javax.swing.JPasswordField();
 
         headingLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,24 +64,32 @@ public class loginPanel extends javax.swing.JPanel {
             }
         });
 
+        showPasswordCheckBox.setText("Show Password");
+        showPasswordCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPasswordCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 208, Short.MAX_VALUE)
+                .addGap(0, 184, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(258, 258, 258))))
+                        .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(passwordField))
+                        .addGap(63, 63, 63)
+                        .addComponent(showPasswordCheckBox)
+                        .addGap(102, 102, 102))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -103,11 +111,12 @@ public class loginPanel extends javax.swing.JPanel {
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel))
-                .addGap(71, 71, 71)
+                    .addComponent(passwordLabel)
+                    .addComponent(showPasswordCheckBox)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
                 .addComponent(loginButton)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,13 +143,24 @@ public class loginPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    private void showPasswordCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordCheckBoxActionPerformed
+        if (showPasswordCheckBox.isSelected()) {
+            // Show password
+            passwordField.setEchoChar('\0');
+        } else {
+            // Hide password
+            passwordField.setEchoChar((Character) UIManager.get("PasswordField.echoChar"));
+        }
+    }//GEN-LAST:event_showPasswordCheckBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headingLabel;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField nameField;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JCheckBox showPasswordCheckBox;
     // End of variables declaration//GEN-END:variables
 }
