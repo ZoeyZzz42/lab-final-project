@@ -47,6 +47,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         TitleLable = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        adminBtn = new javax.swing.JButton();
         bottomPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,6 +106,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        adminBtn.setText("Admin");
+        adminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -112,7 +120,9 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(TitleLable)
-                .addGap(271, 271, 271)
+                .addGap(82, 82, 82)
+                .addComponent(adminBtn)
+                .addGap(111, 111, 111)
                 .addComponent(registerButton)
                 .addGap(31, 31, 31)
                 .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,7 +149,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(viewCartButton)
                     .addComponent(loginButton)
                     .addComponent(registerButton)
-                    .addComponent(TitleLable))
+                    .addComponent(TitleLable)
+                    .addComponent(adminBtn))
                 .addGap(9, 9, 9)
                 .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewButton)
@@ -230,6 +241,12 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.next(bottomPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
+        adminFrame adminFrame = new adminFrame();
+        adminFrame.setVisible(true);
+        MainJFrame.this.dispose();
+    }//GEN-LAST:event_adminBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,6 +284,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleLable;
+    private javax.swing.JButton adminBtn;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JButton createProductButton1;
     private javax.swing.JButton jButton1;
