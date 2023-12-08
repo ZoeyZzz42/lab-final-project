@@ -7,18 +7,20 @@ package util;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 import model.Customer;
 import model.Product;
 
 /**
  * Database Connector class for interacting with database
+ *
  * @author akshatr
  */
 public class DatabaseConnector {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/Ecommerce?useSSL=false";
+    private static final String URL = "jdbc:mysql://127.0.0.1:55000/Ecommerce";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "hallowelt";
 
     /**
      * Privatized constructor so as to not allow object creation
@@ -43,7 +45,7 @@ public class DatabaseConnector {
             e.printStackTrace();
         }
     }
-    
+
 
     public static void addUser(Customer customer) {
         //add to database
@@ -52,7 +54,7 @@ public class DatabaseConnector {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, customer.getCustomerId());
             stmt.setString(2, customer.getName());
-            stmt.setString(3,customer.getGender());
+            stmt.setString(3, customer.getGender());
             stmt.setInt(4, customer.getAge());
             stmt.setString(5, customer.getEmail());
             stmt.setInt(6, customer.getTeleNo());
@@ -107,6 +109,7 @@ public class DatabaseConnector {
 
     /**
      * Edit given user details in the database
+     *
      * @param oldProd existing user in database
      * @param newProd modified user details to be added
      */
@@ -126,7 +129,7 @@ public class DatabaseConnector {
     }
 
     public static boolean validateUser(String username, String password) {
-        String query = "SELECT password FROM CUSTOMER WHERE username = ?";
+        String query = "SELECT password FROM CUSTOMER WHERE name = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -135,41 +138,49 @@ public class DatabaseConnector {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+                // User exists, now compare the password
                 String storedPassword = rs.getString("password");
-
-                // 比较散列值
-                return storedPassword.equals(password);
+                if (storedPassword.equals(password)) {
+                    JOptionPane.showMessageDialog(null, "Login successful");
+                    return true; // Correct password
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error: Incorrect password."); // Incorrect password
+                    return false;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: User does not exist."); // User does not exist
+                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
-    
 
-public static boolean containsUser(Customer customer) {
-    String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE name = ?) AS user_exists";
-    try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setString(1, customer.getName()); // Assuming getCustomerId() returns the username
-
-        ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-          // return rs.getBoolean("user_exists");
-         boolean userExists = rs.getBoolean("user_exists");
-              if (userExists) {
-                 //User exists, display login successful message
-               JOptionPane.showMessageDialog(null, "Login successful");
-           }
-             return userExists;
-
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return false;
-}
+//    public static boolean containsUser(Customer customer) {
+//        String query = "SELECT EXISTS (SELECT 1 FROM CUSTOMER WHERE name = ?) AS user_exists";
+//        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            stmt.setString(1, customer.getName()); // Assuming getCustomerId() returns the username
+//
+//            ResultSet rs = stmt.executeQuery();
+//            if (rs.next()) {
+//                // return rs.getBoolean("user_exists");
+//                boolean userExists = rs.getBoolean("user_exists");
+//                if (userExists) {
+//                    //User exists, display login successful message
+//                    JOptionPane.showMessageDialog(null, "Login successful");
+//                    return true;
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Error: User does not exist.");
+//                    return false;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
 
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/Ecommerce";

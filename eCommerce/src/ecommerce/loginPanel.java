@@ -144,14 +144,14 @@ public class loginPanel extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = nameField.getText();
         String password = passwordField.getText();
-        Customer customer = new Customer();
-        customer.setName(username);
+//        Customer customer = new Customer();
+//        customer.setName(username);
         errorLabel.setVisible(false);
 
         if (username.isEmpty() || password.isEmpty()) {
             errorLabel.setVisible(true);
         } else {
-            if (DatabaseConnector.containsUser(customer) == true) {
+            if (DatabaseConnector.validateUser(username, password) == true) {
                 switch (username) {
                     case "Zoey":
                         adminFrame adminFrame = new adminFrame();
