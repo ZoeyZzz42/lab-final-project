@@ -8,15 +8,18 @@ import javax.swing.JPanel;
 import model.Customer;
 import model.CustomerDirectory;
 import util.DatabaseConnector;
+
 import javax.swing.UIManager;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
- *
  * @author jq
  */
 public class loginPanel extends javax.swing.JPanel {
     private MainJFrame mainJFrame;
     CustomerDirectory users;
+
     /**
      * Creates new form lgoinPanel
      */
@@ -42,10 +45,14 @@ public class loginPanel extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
         showPasswordCheckBox = new javax.swing.JCheckBox();
         passwordField = new javax.swing.JPasswordField();
+        errorLabel = new javax.swing.JLabel();
 
         headingLabel.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         headingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headingLabel.setText("Login Here");
+
+        passwordField.getDocument().addDocumentListener(fieldListener);
+        nameField.getDocument().addDocumentListener(fieldListener);
 
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +77,11 @@ public class loginPanel extends javax.swing.JPanel {
                 showPasswordCheckBoxActionPerformed(evt);
             }
         });
+
+        errorLabel.setForeground(new java.awt.Color(255, 51, 0));
+        errorLabel.setText("Please fill in all fields!");
+        errorLabel.setVerifyInputWhenFocusTarget(false);
+        errorLabel.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,8 +109,11 @@ public class loginPanel extends javax.swing.JPanel {
                         .addComponent(loginButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(headingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(errorLabel)))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +131,9 @@ public class loginPanel extends javax.swing.JPanel {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addComponent(loginButton)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(errorLabel)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,15 +146,18 @@ public class loginPanel extends javax.swing.JPanel {
         String password = passwordField.getText();
         Customer customer = new Customer();
         customer.setName(username);
+        errorLabel.setVisible(false);
 
-                // Call the loginUser() method to validate credentials
-        if(DatabaseConnector.containsUser(customer) == true){
-            switch (username){
-                case "Zoey":
-                    adminFrame adminFrame = new adminFrame();
-                    adminFrame.setVisible(true);
-                    mainJFrame.setVisible(false);
-
+        if (username.isEmpty() || password.isEmpty()) {
+            errorLabel.setVisible(true);
+        } else {
+            if (DatabaseConnector.containsUser(customer) == true) {
+                switch (username) {
+                    case "Zoey":
+                        adminFrame adminFrame = new adminFrame();
+                        adminFrame.setVisible(true);
+                        mainJFrame.setVisible(false);
+                }
             }
         }
 
@@ -153,8 +173,25 @@ public class loginPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_showPasswordCheckBoxActionPerformed
 
+    DocumentListener fieldListener = new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            errorLabel.setVisible(false);
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            errorLabel.setVisible(false);
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            errorLabel.setVisible(false);
+        }
+    };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField nameField;
