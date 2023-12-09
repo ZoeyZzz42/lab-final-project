@@ -116,9 +116,9 @@ public class viewWholeProductsPanel extends javax.swing.JPanel {
         try{
             
             selectedProduct = products.get(selectedIdx);
-            newSc.setProductName(selectedProduct.getProductName());
+            newSc.setName(selectedProduct.getProductName());
             newSc.setPrice(selectedProduct.getPrice());
-            newSc.setProductId(UUID.randomUUID().toString());
+            newSc.setScID(UUID.randomUUID().toString());
             DatabaseConnector.addShoppingCart(newSc);
         } catch (Exception ex)  {
             JOptionPane.showMessageDialog(this, "Please enter correct details", "Error", HEIGHT);

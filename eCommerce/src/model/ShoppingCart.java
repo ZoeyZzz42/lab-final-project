@@ -1,59 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.time.LocalDate;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author jq
+ * ShoppingCart class
  */
 public class ShoppingCart {
-    private String productName;
-    private String productId;
+    private String scID;
+    private String name;
     private int price;
 
-    /**
-     * @return the productName
-     */
-    public String getProductName() {
-        return productName;
+    // Getters and setters for scID and name
+    public String getScID() {
+        return scID;
     }
 
-    /**
-     * @param productName the productName to set
-     */
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setScID(String scID) {
+        this.scID = scID;
     }
 
-    /**
-     * @return the productId
-     */
-    public String getProductId() {
-        return productId;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * @param productId the productId to set
-     */
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * @return the price
-     */
+    // Getter and setter for price
     public int getPrice() {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
     public void setPrice(int price) {
         this.price = price;
     }
